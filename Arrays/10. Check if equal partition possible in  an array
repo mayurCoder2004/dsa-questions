@@ -1,0 +1,16 @@
+public class Solution{
+    public static boolean isPartitionPossible(int [] arr){
+        int totalSum = arraySum(arr);
+        int n = arr.length;
+
+        int prefSum = 0;
+        for (int i=0; i<n; i++){
+            prefSum += arr[i];
+            int suffSum = totalSum - prefSum;
+            if (prefSum == suffSum){
+                return true;
+            }
+        }
+        return false;
+    }
+}
