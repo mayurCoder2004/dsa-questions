@@ -1,0 +1,20 @@
+public class Solution{
+    public static int [] minAndMax(int [] arr){
+        int n = arr.length;
+        int [] ans = new int[2];
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        for (int i=0; i<n; i++){
+            if (arr[i] > max){
+                max = arr[i];
+            }
+            if (arr[i] < min){
+                min = arr[i];
+            }
+        }
+        ans[0] = min;
+        ans[1] = max;
+        return ans;
+        
+    }
+}
