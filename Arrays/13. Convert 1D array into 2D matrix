@@ -1,0 +1,13 @@
+public class Solution{
+    public static int [][] convert1Dto2D(int [] arr, int r, int c){
+        int [][] c = new int[r][c];
+        int n = arr.length;
+        int k = 0;
+        for (int i=0; i<r; i++){
+            for (int j=0; j<c; j++){
+                c[i][j] = arr[k++];
+            }
+        }
+        return c;
+    }
+}
