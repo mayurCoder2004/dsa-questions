@@ -1,0 +1,19 @@
+public class Solution{
+    public static int[][] pascal(int n){
+         int [][] ans = new int[n][];
+
+         for (int i=0; i<n; i++){
+             // ith row has i+1 columns
+             ans[i] = new int[i+1];
+
+             // first and last column of every row is 1
+             ans[i][0] = ans[i][i] = 1;
+
+             for (int j=0; j<n; j++){
+                 // ans[i][j] = ans[i-1][j] + ans[i-1][j-1]
+                 ans[i][j] = ans[i-1][j] + ans[i-1][j-1];
+             }
+         }
+         
+    }
+}
