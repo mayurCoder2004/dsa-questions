@@ -1,0 +1,40 @@
+                                  // Approach
+                                  
+// Step 1 :- Count the number of 0s, 1s and 2s
+// Step 2 :- Then use three while loops 
+// Step 3 :- First while loop while make sure that all the zeroes are inserted
+// Step 3 :- Second while loop while make sure that all the ones are inserted
+// Step 3 :- Third while loop while make sure that all the twos are inserted
+
+public class Solution{
+    public static void sort012(int [] arr){
+        int n = arr.length;
+        int zero = 0, one = 0, two = 0;
+
+        for (int i=0; i<n; i++){
+            if (arr[i] == 0){
+                zero++;
+            }
+            else if (arr[i] == 1){
+                one++;
+            }
+            else if (arr[i] == 2){
+                two++;
+            }
+        }
+
+        int j = 0;
+        while (zero != 0){
+            arr[j++] = 0;
+            zero--;
+        }
+        while (one != 0){
+            arr[j++] = 1;
+            one--;
+        }
+        while (two != 0){
+            arr[j++] = 2;
+            two--;
+        }
+    }
+}
