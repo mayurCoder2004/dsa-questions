@@ -1,0 +1,26 @@
+/* Approach :- 
+
+1. If curr == next then continue
+2.  If curr != next then arr[count]  = arr[curr] and increment count (i.e. count++)
+3. Always add last element of the array in the final array     */
+
+
+public class Solution{
+    public static int removeDuplicates(int[] arr) {
+        int n = arr.length;
+        int count = 0;
+
+        for (int i=0; i<n; i++){
+            if (i < arr.length-1 && arr[i] != arr[i+1]){
+                arr[count++] = arr[i];
+            }
+            else {
+                continue;
+            }
+        }
+
+        arr[count++] = arr[n-1];
+
+        return count;
+    }
+}
