@@ -1,0 +1,30 @@
+                                                // APPROACH
+// We will just count the number of ones in array and store it in the arraylist when the element in an array is 0
+// Step 1 :- Create one ArrayList
+// Step 2 :- Make one count pointer which will count the number of ones in an array
+// Step 3 :- Now, we will run for loop from index 0 to n-1 (where n -> size of an array)
+// Step 4 :- Now we will check if arr[i] = 1, then we will increment our count. We will do this until arr[i] = 0
+// Step 5 :- Whenever we get arr[i] = 0, we will add the count to our arraylist then we will make our count to 0
+// Step 6 :- We will now again traverse through the array and we will repeat the same process from step 4 to step 5
+// Step 7 :- At last, after for loop is run throughout the array, we will add the count to arraylist.
+
+
+class Solution {
+    public int findMaxConsecutiveOnes(int[] arr) {
+        int n = arr.length;
+        ArrayList<Integer> ans = new ArrayList<>();
+        int count = 0;
+
+        for (int i=0; i<n; i++){
+            if (arr[i] == 1){
+                count++;
+            }
+            else {
+                ans.add(count);
+                count = 0;
+            }
+        }
+        ans.add(count);
+        return Collections.max(ans);
+    }
+}
