@@ -1,0 +1,20 @@
+public class Solution {
+    public static void alphaHill(int n) {
+        for (int i=1; i<=n; i++){
+            for (int s=i; s<=n-1; s++){
+                System.out.print(" ");
+            }
+
+            for (int j=65; j<65+i; j++){
+                char ch = (char)j;
+                System.out.print(ch + " ");
+            }
+
+            for (int k=65+i-2; k>=65; k--){
+                char ch = (char)k;
+                System.out.print(ch + " ");
+            }
+            System.out.println();
+        }
+    }
+}
