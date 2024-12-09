@@ -1,0 +1,19 @@
+public class Solution {
+    public static void getNumberPattern(int n) {
+        int num = n*2-1;
+        
+        for (int i=0; i<num; i++){
+            for (int j=0; j<num; j++){
+                int top = i;
+                int left = j;
+                int right = num - 1 - j;
+                int bottom = num - 1 - i;
+                int min1 = Math.min(top, left);
+                int min2 = Math.min(right, bottom);
+                int min = Math.min(min1, min2);
+                System.out.print(n - min);
+            }
+            System.out.println();
+        }
+    }
+}
