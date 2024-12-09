@@ -1,0 +1,21 @@
+class Solution {
+    public static int[] lcmAndGcd(int a, int b) {
+        int [] ans = new int[2];
+        int lcm = 0;
+        int gcd = 0;
+        
+        for (int i=Math.max(a, b); i>=1; i--){
+            if (a % i == 0 && b % i == 0){
+                gcd = i;
+                break;
+            }
+        }
+        
+        lcm = (a * b)/gcd;
+        
+        ans[0] = lcm;
+        ans[1] = gcd;
+        
+        return ans;
+    }
+}
