@@ -1,0 +1,25 @@
+class Solution {
+    public static void help(int [] arr, int beginIndex, int size){
+        // Base case
+        if (beginIndex >= size-1){
+            return;
+        }
+        
+        // Self work
+        int minIndex = beginIndex;
+        for (int i=beginIndex; i<size; i++){
+            if (arr[i] < arr[minIndex]){
+                minIndex = i;
+            }
+        }
+        int temp = arr[beginIndex];
+        arr[beginIndex] = arr[minIndex];
+        arr[minIndex] = temp;
+        
+        // Recursive work
+        help(arr, beginIndex+1, size);
+    }
+    void selectionSort(int[] arr) {
+        help(arr, 0, arr.length);
+    }
+}
