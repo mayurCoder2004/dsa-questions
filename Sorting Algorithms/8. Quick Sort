@@ -1,0 +1,48 @@
+class Solution{
+    static void swap(int [] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    static void quickSort(int arr[], int low, int high){
+        if (low >= high){
+            return;
+        }
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi-1);
+        quickSort(arr, pi+1, high);
+    }
+    static int partition(int arr[], int low, int high){
+        int pivot = arr[low];
+        int count = 0;
+
+        for (int i=low+1; i<=high; i++){
+            if (arr[i] <= pivot){
+                count++;
+            }
+        }
+
+        int pivotIndex = low + count;
+        swap(arr, low, pivotIndex);
+
+        int i = low;
+        int j = high;
+
+        while (i < pivotIndex && j > pivotIndex){
+            while (arr[i] <= pivot){
+                i++;
+            }
+            while (arr[j] > pivot){
+                j--;
+            }
+
+            if (i < pivotIndex && j > pivotIndex){
+                swap(arr, i, j);
+                i++;
+                j--;
+            }
+        }
+
+        return pivotIndex;
+    } 
+}
