@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Solution {
+    public static List<Integer> sortedArray(int[] a, int[] b) {
+        TreeSet<Integer> ans = new TreeSet<>();
+        
+        for (int num : a) {
+            ans.add(num);
+        }
+        
+        for (int num : b) {
+            ans.add(num);
+        }
+        
+        return new ArrayList<>(ans);
+    }
+}
