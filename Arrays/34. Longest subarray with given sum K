@@ -1,0 +1,27 @@
+class Solution {
+    public int lenOfLongestSubarr(int[] arr, int k) {
+        int n = arr.length;
+        HashMap<Integer, Integer> prefSum = new HashMap<>();
+        int maxLen = 0;
+        int sum = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
+            if (sum == k) {
+                maxLen = Math.max(maxLen, i + 1);
+            }
+
+            int rem = sum - k;
+            if (prefSum.containsKey(rem)) {
+                int len = i - prefSum.get(rem);
+                maxLen = Math.max(maxLen, len);
+            }
+
+            if (!prefSum.containsKey(sum)) {
+                prefSum.put(sum, i);
+            }
+        }
+
+        return maxLen;
+    }
+}
