@@ -1,0 +1,26 @@
+                                                         // BRUTE FORCE APPROACH
+
+class Solution {
+    public long[] sumOfThree(long num) {
+        long [] ans = new long[3];
+
+        for (int i=0; i<=num; i++){
+            if (i + (i + 1) + (i + 2) == num){
+                ans[0] = i;
+                ans[1] = i+1;
+                ans[2] = i+2;
+                break;
+            }
+        }
+        if (ans[0] == 0 && ans[1] == 0 && ans[2] == 0){
+            long [] arr = new long[0];
+            return arr;
+        }
+        return ans;
+    }
+}
+
+
+
+
+
