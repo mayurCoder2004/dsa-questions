@@ -30,7 +30,7 @@ Each folder contains solutions to problems related to that specific topic.
 ## 📚 How to Use
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/mayurCoder2004/DSA-Questions](https://github.com/mayurCoder2004/dsa-questions).git
+   git clone https://github.com/mayurCoder2004/DSA-Questions.git
    ```
 2. Navigate to the desired topic folder.
 3. Open the corresponding file and understand the solution.
