@@ -1,0 +1,39 @@
+class Solution {
+    public static int time(int [] arr, int h){
+        int ans = 0;
+        int n = arr.length;
+
+        for (int i=0; i<n; i++){
+            ans += Math.ceil((double)arr[i] / (double)h);
+        }
+        return ans;
+    }
+    public static int maxInArray(int [] arr){
+        int n = arr.length;
+        int max = Integer.MIN_VALUE;
+
+        for (int i=0; i<n; i++){
+            if (arr[i] > max){
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+    public int minEatingSpeed(int[] piles, int h) {
+        int st = 1, end = maxInArray(piles);
+        int ans = -1;
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+            int totalHrs = time(piles, mid);
+            if (totalHrs <= h){
+                ans = mid;
+                end = mid - 1;
+            }
+            else {
+                st = mid + 1;
+            }
+        }
+        return ans;
+    }
+}
