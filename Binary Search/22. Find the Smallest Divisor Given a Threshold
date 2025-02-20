@@ -1,0 +1,35 @@
+class Solution {
+    public static int divisorSum(int [] arr, int div){
+        int sum = 0;
+        int n = arr.length;
+        for (int i=0; i<n; i++){
+            sum += Math.ceil((double)(arr[i]) / (double)(div));
+        }
+        return sum;
+    }
+
+    public static int maxSum(int [] arr){
+        int n = arr.length;
+        int max = Integer.MIN_VALUE;
+        for (int i=0; i<n; i++){
+            max = Math.max(arr[i], max);
+        }
+        return max;
+    }
+    public int smallestDivisor(int[] nums, int threshold) {
+        int n = nums.length;
+        int st = 1, end = maxSum(nums);
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+            int sum = divisorSum(nums, mid);
+            if (sum <= threshold){
+                end = mid - 1;
+            }
+            else {
+                st = mid + 1;
+            }
+        }
+        return st;
+    }
+}
