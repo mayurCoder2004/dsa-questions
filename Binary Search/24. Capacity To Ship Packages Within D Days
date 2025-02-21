@@ -1,0 +1,113 @@
+                                                              // BRUTE FORCE APPROACH
+
+class Solution {
+    public static int sum(int [] arr){
+        int n = arr.length;
+        int sum = 0;
+        for (int i=0; i<n; i++){
+            sum += arr[i];
+        }
+        return sum;
+    }
+
+    public static int max(int [] arr){
+        int n = arr.length;
+        int max = Integer.MIN_VALUE;
+
+        for (int i=0; i<n; i++){
+            max = Math.max(arr[i], max);
+        }
+        return max;
+    }
+
+    public static int days(int [] wt, int capacity){
+        int days = 1, load = 0;
+        int n = wt.length;
+
+        for (int i=0; i<n; i++){
+            if (load + wt[i] > capacity){
+                days = days + 1;
+                load = wt[i];
+            }
+            else {
+                load += wt[i];
+            }
+        }
+        return days;
+    }
+    public int shipWithinDays(int[] weights, int days) {
+        int max = sum(weights);
+        int min = max(weights);
+
+        for (int i=min; i<=max; i++){
+            int daysReq = days(weights, i);
+            if (daysReq <= days){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
+
+
+                                                                    // BINARY SEARCH APPROACH
+
+class Solution {
+    public static int sum(int [] arr){
+        int n = arr.length;
+        int sum = 0;
+        for (int i=0; i<n; i++){
+            sum += arr[i];
+        }
+        return sum;
+    }
+
+    public static int max(int [] arr){
+        int n = arr.length;
+        int max = Integer.MIN_VALUE;
+
+        for (int i=0; i<n; i++){
+            max = Math.max(arr[i], max);
+        }
+        return max;
+    }
+
+    public static int days(int [] wt, int capacity){
+        int days = 1, load = 0;
+        int n = wt.length;
+
+        for (int i=0; i<n; i++){
+            if (load + wt[i] > capacity){
+                days = days + 1;
+                load = wt[i];
+            }
+            else {
+                load += wt[i];
+            }
+        }
+        return days;
+    }
+    public int shipWithinDays(int[] weights, int days) {
+        int max = sum(weights);
+        int min = max(weights);
+
+        int ans = min;
+        int st = min, end = max;
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+            int daysReq = days(weights, mid);
+            if (daysReq <= days){
+                ans = mid;
+                end = mid - 1;
+            }
+            else {
+                st = mid + 1;
+            }
+        }
+        return ans;
+    }
+}
