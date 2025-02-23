@@ -1,0 +1,35 @@
+                                                          // BRUTE FORCE APPROACH
+
+import java.util.*;
+public class Solution {
+    public static boolean isPossible(int [] arr, int dist, int cows){
+        int n = arr.length;
+        int countCows = 1, last = arr[0];
+
+        for (int i=1; i<n; i++){
+            if (arr[i] - last >= dist){
+                countCows++;
+                last = arr[i];
+            }
+        }
+        return (countCows >= cows);
+    }
+    public static int aggressiveCows(int []stalls, int k) {
+        //    Write your code here.
+        int n = stalls.length;
+        Arrays.sort(stalls);
+        int max = stalls[n-1] - stalls[0];
+        int min = 1;
+        int bestDist = 1;
+
+        for (int i=1; i<=max; i++){
+            if (isPossible(stalls, i, k)){
+                bestDist = i;
+            }
+            else {
+                break;
+            }
+        }
+        return bestDist;
+    }
+}
