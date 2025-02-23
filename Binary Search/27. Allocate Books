@@ -1,0 +1,107 @@
+                                                    // BRUTE FORCE APPROACH
+
+import java.util.ArrayList;
+public class Solution {
+    public static int sum(ArrayList<Integer> arr){
+        int sum = 0;
+        for (int i=0; i<arr.size(); i++){
+            sum += arr.get(i);
+        }
+        return sum;
+    }
+
+    public static int max(ArrayList<Integer> arr){
+        int max = Integer.MIN_VALUE;
+        for (int i=0; i<arr.size(); i++){
+            max = Math.max(max, arr.get(i));
+        }
+        return max;
+    }
+
+    public static int noOfStudent(ArrayList<Integer> arr, int pages){
+        int stud = 1, pagesStudent = 0;
+        for (int i=0; i<arr.size(); i++){
+            if (arr.get(i) + pagesStudent <= pages){
+                pagesStudent += arr.get(i);
+            }
+            else {
+                stud++;
+                pagesStudent = arr.get(i);
+            }
+        }
+        return stud;
+    }
+    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+        int min = max(arr), max = sum(arr);
+
+        for (int i=min; i<=max; i++){
+            if (noOfStudent(arr, i) == m){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
+
+
+                                                      // BINARY SEARCH APPROACH
+
+import java.util.ArrayList;
+public class Solution {
+    public static int sum(ArrayList<Integer> arr){
+        int sum = 0;
+        for (int i=0; i<arr.size(); i++){
+            sum += arr.get(i);
+        }
+        return sum;
+    }
+
+    public static int max(ArrayList<Integer> arr){
+        int max = Integer.MIN_VALUE;
+        for (int i=0; i<arr.size(); i++){
+            max = Math.max(max, arr.get(i));
+        }
+        return max;
+    }
+
+    public static int noOfStudent(ArrayList<Integer> arr, int pages){
+        int stud = 1, pagesStudent = 0;
+        for (int i=0; i<arr.size(); i++){
+            if (arr.get(i) + pagesStudent <= pages){
+                pagesStudent += arr.get(i);
+            }
+            else {
+                stud++;
+                pagesStudent = arr.get(i);
+            }
+        }
+        return stud;
+    }
+    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+        // Write your code here.
+        int min = max(arr), max = sum(arr);
+
+        if (m > n){
+            return -1;
+        }
+
+        int st = min, end = max;
+        int ans = -1;
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+            int stud = noOfStudent(arr, mid);
+            if (stud > m){
+                st = mid + 1;
+            }
+            else {
+                ans = mid;
+                end = mid - 1;
+            }
+        }
+        return ans;
+    }
+}
