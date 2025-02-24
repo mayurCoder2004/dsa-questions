@@ -1,0 +1,90 @@
+                                                      // BRUTE FORCE APPROACH
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+
+        int i = 0, j = 0, k = 0;
+        int n = n1 + n2;
+        int [] nums = new int[n];
+
+        while (i < n1 && j < n2){
+            if (nums1[i] <= nums1[j]){
+                nums[k++] = nums1[i++]; 
+            }
+            else {
+                nums[k++] = nums2[j++];
+            }
+        }
+
+        while (i < n1){
+            nums[k++] = nums1[i++];
+        }
+        while (j < n2){
+            nums[k++] = nums2[j++];
+        }
+
+        if (n % 2 == 1){
+            return nums[n/2];
+        }
+
+        double ans = ((double)nums[n/2] + (double)nums[(n/2)-1])/2;
+        return ans;
+    }
+}
+
+
+
+
+
+                                                    // BETTER APPROACH
+
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+
+        int n = n1 + n2;
+        int idx1 = n/2;
+        int idx2 = idx1 - 1;
+        int count = 0;
+        int idx1el = -1;
+        int idx2el = -1;
+        int i = 0, j = 0;
+
+        while (i < n1 && j < n2){
+            if (nums1[i] < nums2[j]){
+                if (count == idx1) idx1el = nums1[i];
+                if (count == idx2) idx2el = nums1[i];
+                count++;
+                i++;
+            }
+            else {
+                if (count == idx1) idx1el = nums2[j];
+                if (count == idx2) idx2el = nums2[j];
+                count++;
+                j++;
+            }
+        }
+        while (i < n1){
+            if (count == idx1) idx1el = nums1[i];
+            if (count == idx2) idx2el = nums1[i];
+            count++;
+            i++;
+        }
+        while (j < n2){
+            if (count == idx1) idx1el = nums2[j];
+            if (count == idx2) idx2el = nums2[j];
+            count++;
+            j++;
+        }
+
+        if (n % 2 == 1){
+            return idx1el;
+        }
+        
+        double ans = ((double)idx1el + (double)idx2el)/2;
+        return ans;
+    }
+}
