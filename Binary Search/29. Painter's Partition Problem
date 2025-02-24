@@ -1,0 +1,108 @@
+                                                        // BRUTE FORCE APPROACH
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int sum(ArrayList<Integer> arr){
+        int sum = 0;
+        for (int i=0; i<arr.size(); i++){
+            sum += arr.get(i);
+        }
+        return sum;
+    }
+
+    public static int max(ArrayList<Integer> arr){
+        int max = Integer.MIN_VALUE;
+        for (int i=0; i<arr.size(); i++){
+            max = Math.max(max, arr.get(i));
+        }
+        return max;
+    }
+
+    public static int noOfPainters(ArrayList<Integer> arr, int k){
+        int painter = 1, costOfWalls = 0;
+        int n = arr.size();
+
+        for (int i=0; i<n; i++){
+            if (costOfWalls + arr.get(i) <= k){
+                costOfWalls += arr.get(i);
+            }
+            else {
+                painter++;
+                costOfWalls = arr.get(i);
+            }
+        }
+        return painter;
+    }
+    public static int findLargestMinDistance(ArrayList<Integer> boards, int k)
+    {
+        int st = max(boards), end = sum(boards);
+
+        for (int i=st; i<=end; i++){
+            int painter = noOfPainters(boards, i);
+            if (painter == k){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+
+
+
+
+                                                          // BINARY SEARCH APPROACH
+
+import java.util.ArrayList;
+
+public class Solution 
+{
+    public static int sum(ArrayList<Integer> arr){
+        int sum = 0;
+        for (int i=0; i<arr.size(); i++){
+            sum += arr.get(i);
+        }
+        return sum;
+    }
+
+    public static int max(ArrayList<Integer> arr){
+        int max = Integer.MIN_VALUE;
+        for (int i=0; i<arr.size(); i++){
+            max = Math.max(max, arr.get(i));
+        }
+        return max;
+    }
+
+    public static int noOfPainters(ArrayList<Integer> arr, int k){
+        int painter = 1, costOfWalls = 0;
+        int n = arr.size();
+
+        for (int i=0; i<n; i++){
+            if (costOfWalls + arr.get(i) <= k){
+                costOfWalls += arr.get(i);
+            }
+            else {
+                painter++;
+                costOfWalls = arr.get(i);
+            }
+        }
+        return painter;
+    }
+    public static int findLargestMinDistance(ArrayList<Integer> boards, int k)
+    {
+        int st = max(boards), end = sum(boards);
+
+        while (st <= end){
+            int mid = st + (end - st)/2;
+            if (noOfPainters(boards, mid) > k){
+                st = mid + 1;
+            }
+            else {
+                end = mid - 1;
+            }
+        }
+        return st;
+    }
+}
