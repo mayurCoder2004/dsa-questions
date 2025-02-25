@@ -1,0 +1,36 @@
+class Solution {
+    public static double maxDistance(int [] arr){
+        int n = arr.length;
+        double max = 0.0;
+        for (int i=1; i<n; i++){
+            max = Math.max(max, (arr[i] - arr[i-1]));
+        }
+        return max;
+    }
+    
+    public static boolean isPossible(int [] arr, int k, double mid){
+        int req = 0;
+        int n = arr.length;
+        for (int i=1; i<n; i++){
+            int diff = arr[i] - arr[i-1];
+            req += Math.ceil(diff/mid)-1;
+        }
+        return req <= k;
+    }
+    public static double findSmallestMaxDist(int stations[], int k) {        
+        int n = stations.length;
+        double l = 0, r = maxDistance(stations);
+        
+        while (l+1e-6 < r){
+            double mid = (l + r)/2;
+            
+            if (isPossible(stations, k, mid)){
+                r = mid;
+            }
+            else {
+                l = mid;
+            }
+        }
+        return r;
+    }
+}
