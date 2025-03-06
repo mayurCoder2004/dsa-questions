@@ -1,0 +1,39 @@
+                                                        // APPROACH 1
+
+public static int nthNode(Node head, int n){
+    int size = 0;
+    Node temp = head;
+
+    while (temp != null){
+        size++;
+        temp = temp.next;
+    }
+
+    int m = size - n + 1;
+    temp = head;
+    for (int i=1; i<=m-1; i++){
+        temp = temp.next;
+    }
+    return temp.data;
+}
+
+
+
+
+
+                                                        // APPROACH 2
+
+public static int nthNode(Node head, int n){
+    Node slow = head;
+    Node fast = head;
+
+    for (int i=1; i<=n; i++){
+        fast = fast.next;
+    }
+
+    while (fast != null){
+        slow = slow.next;
+        fast = fast.next;
+    }
+    return slow.data;
+}
