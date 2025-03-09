@@ -1,0 +1,43 @@
+                                                          // APPROACH (USING EXTRA SPACE)
+
+/*
+class Node{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    Node divide(Node head) {
+        // code here
+        Node even = new Node(-1);
+        Node odd = new Node(-1);
+        Node temp = head;
+        Node t1 = even;
+        Node t2 = odd;
+        
+        while (temp != null){
+            int val = temp.data;
+            if (val % 2 == 0){
+                Node t = new Node(val);
+                t1.next = t;
+                t1 = t;
+            }
+            else {
+                Node t = new Node(val);
+                t2.next = t;
+                t2 = t;
+            }
+            temp = temp.next;
+        }
+        even = even.next;
+        odd = odd.next;
+        t1.next = odd;
+        return even;
+    }
+}
