@@ -1,0 +1,30 @@
+// function Template for Java
+
+/* linked list node class:
+
+class Node {
+    int data;
+    Node next;
+    Node(int value) {
+        this.value = value;
+    }
+}
+
+*/
+
+class Solution {
+    Node reverseList(Node head) {
+        // Base case
+        if (head.next == null){
+            return head;
+        }
+        
+        // Recursive work
+        Node newHead = reverseList(head.next);
+        
+        // Self work
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+    }
+}
