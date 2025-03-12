@@ -24,6 +24,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Patterns**
 - **Binary Search**
 - **Strings**
+- **LinkedList**
 
 ## 🛠️ Languages Used
 - Java
