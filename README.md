@@ -13,6 +13,7 @@ DSA-Questions/
 │── Patterns/
 │── Binary Search/
 │── Strings/
+|── LinkedList
 │── README.md
 ```
 Each folder contains solutions to problems related to that specific topic.
