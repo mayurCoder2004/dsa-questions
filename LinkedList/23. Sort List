@@ -1,0 +1,44 @@
+                                                          // BRUTE FORCE APPROACH
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode sortList(ListNode head) {
+        ListNode temp = head;
+        int size = 0;
+
+        while (temp != null){
+            size++;
+            temp = temp.next;
+        }
+
+        int [] arr = new int[size];
+
+        temp = head;
+        int k = 0;
+        while (temp != null){
+            arr[k++] = temp.val;
+            temp = temp.next;
+        }
+
+        Arrays.sort(arr);
+
+        ListNode h = new ListNode(100);
+        ListNode t = h;
+        k = 0;
+        while (k != size){
+            ListNode newNode = new ListNode(arr[k++]);
+            t.next = newNode;
+            t = newNode;
+        }
+        return h.next;
+    }
+}
