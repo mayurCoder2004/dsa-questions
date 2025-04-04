@@ -1,0 +1,34 @@
+class Solution {
+    // Function to sort a linked list of 0s, 1s and 2s.
+    static Node segregate(Node head) {
+        // add your code here
+        Node temp = head;
+        int size = 0;
+
+        while (temp != null){
+            size++;
+            temp = temp.next;
+        }
+
+        int [] arr = new int[size];
+
+        temp = head;
+        int k = 0;
+        while (temp != null){
+            arr[k++] = temp.data;
+            temp = temp.next;
+        }
+
+        Arrays.sort(arr);
+
+        Node h = new Node(100);
+        Node t = h;
+        k = 0;
+        while (k != size){
+            Node newNode = new Node(arr[k++]);
+            t.next = newNode;
+            t = newNode;
+        }
+        return h.next;
+    }
+}
