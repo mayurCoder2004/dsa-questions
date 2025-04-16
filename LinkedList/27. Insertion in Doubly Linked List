@@ -1,0 +1,39 @@
+public class Solution {
+
+    static Node insert(int k, int val, Node head) {
+        int index = 0;
+        Node temp = head;
+        Node newNode = new Node(val);
+        if (head == null){
+            return newNode;
+        }
+
+        if (k == 0){
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+            return head;
+        }
+
+
+        while (index < k-1 && temp.next != null){
+            temp = temp.next;
+            index++;
+        }
+
+        if (temp.next == null && index == k-1){
+            temp.next = newNode;
+            newNode.prev = temp;
+            return head;
+        }
+
+        newNode.next = temp.next;
+        newNode.prev = temp;
+        if (temp.next != null){
+            temp.next.prev = newNode;
+        }
+        temp.next = newNode;
+
+        return head;
+    }
+}
