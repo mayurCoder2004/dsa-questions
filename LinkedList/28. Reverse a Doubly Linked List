@@ -1,0 +1,73 @@
+                                                          // BRUTE FORCE APPROACH
+
+/*
+class DLLNode {
+    int data;
+    DLLNode next;
+    DLLNode prev;
+
+    DLLNode(int val) {
+        data = val;
+        next = null;
+        prev = null;
+    }
+}
+*/
+class Solution {
+    public DLLNode reverseDLL(DLLNode head) {
+        // Your code here
+        DLLNode temp = head;
+        Stack<Integer> st = new Stack<>();
+        
+        while (temp != null){
+            st.push(temp.data);
+            temp = temp.next;
+        }
+        
+        temp = head;
+        while (temp != null){
+            temp.data = st.pop();
+            temp = temp.next;
+        }
+        return head;
+    }
+}
+
+
+
+
+
+
+                                                          // OPTIMIZED APPROACH
+/*
+class DLLNode {
+    int data;
+    DLLNode next;
+    DLLNode prev;
+
+    DLLNode(int val) {
+        data = val;
+        next = null;
+        prev = null;
+    }
+}
+*/
+class Solution {
+    public DLLNode reverseDLL(DLLNode head) {
+        // Your code here
+        DLLNode temp = head;
+        Stack<Integer> st = new Stack<>();
+        
+        while (temp != null){
+            st.push(temp.data);
+            temp = temp.next;
+        }
+        
+        temp = head;
+        while (temp != null){
+            temp.data = st.pop();
+            temp = temp.next;
+        }
+        return head;
+    }
+}
