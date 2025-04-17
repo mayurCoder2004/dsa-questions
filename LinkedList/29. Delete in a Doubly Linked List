@@ -1,0 +1,42 @@
+/*
+
+Definition for doubly Link List Node
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    Node(int val) {
+        data = val;
+        next = null;
+        prev = null;
+    }
+}
+*/
+class Solution {
+    public Node deleteNode(Node head, int x) {
+        // code here
+        if (x == 1){
+            head = head.next;
+            head.prev = null;
+            return head;
+        }
+        
+        Node temp = head;
+        int idx = 1;
+        while (idx < x-1){
+            temp = temp.next;
+            idx++;
+        }
+        
+        if (temp.next.next == null){
+            temp.next = null;
+            return head;
+        }
+        
+        Node a = temp.next.next;
+        temp.next = a;
+        a.prev = temp;
+        return head;
+    }
+}
