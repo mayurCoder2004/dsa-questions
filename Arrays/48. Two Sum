@@ -1,0 +1,45 @@
+                                                        // BRUTE FORCE APPROACH
+
+class Solution {
+    public int[] twoSum(int[] arr, int target) {
+        int n = arr.length;
+        int [] ans = new int[2];
+
+        for (int i=0; i<n; i++) {
+            for (int j=i+1; j<n; j++) {
+                if (arr[i] + arr[j] == target) {
+                    ans[0] = i;
+                    ans[1] = j;
+                    return ans; 
+                }
+            }
+        }
+        return new int[]{-1, -1};
+    }
+}
+
+
+
+
+
+                                                          // BETTER APPROACH
+
+class Solution {
+    public int[] twoSum(int[] arr, int target) {
+        int n = arr.length;
+        int [] ans = new int[2];
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i=0; i<n; i++) {
+            int remaining = target - arr[i];
+            if (map.containsKey(remaining)) {
+                ans[0] = map.get(remaining);
+                ans[1] = i;
+                return ans;
+            }
+            map.put(arr[i], i);
+        }
+        return new int[]{-1, -1};
+    }
+}
+            
