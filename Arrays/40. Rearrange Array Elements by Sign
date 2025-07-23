@@ -1,18 +1,54 @@
+                                                            // BRUTE FORCE APPROACH
+
+class Solution {
+    public int[] rearrangeArray(int[] arr) {
+        int size = arr.length;
+
+        int [] pos = new int[size/2];
+        int [] neg = new int[size/2];
+        int p = 0, n = 0;
+
+        for (int i=0; i<size; i++) {
+            if (arr[i] < 0) {
+                neg[n++] = arr[i];
+            }
+            else {
+                pos[p++] = arr[i];
+            }
+        }
+
+        p = 0;
+        n = 0;
+
+        for (int i=0; i<size; i++) {
+            if (i % 2 == 0 || i == 0) {
+                arr[i] = pos[p++];
+            }
+            else {
+                arr[i] = neg[n++];
+            }
+        }
+        return arr;
+    }
+}
+
+
+                                                            // OPTMIZED APPROACH
+
 class Solution {
     public int[] rearrangeArray(int[] arr) {
         int n = arr.length;
+        int pos = 0, neg = 1;
         int [] ans = new int[n];
-        int j = 0;
-        int k = 1;
 
-        for (int i=0; i<n; i++){
-            if (arr[i] > 0){
-                ans[j] = arr[i];
-                j = j + 2;
+        for (int i=0; i<n; i++) {
+            if (arr[i] > 0) {
+                ans[pos] = arr[i];
+                pos += 2;
             }
             else {
-                ans[k] = arr[i];
-                k = k + 2;
+                ans[neg] = arr[i];
+                neg += 2;
             }
         }
         return ans;
