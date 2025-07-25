@@ -1,45 +1,44 @@
                                                               // BRUTE FORCE APPROACH
 
 class Solution {
-    public int subarraySum(int[] nums, int k) {
-        int n = nums.length;
+    public int subarraySum(int[] arr, int k) {
+        int n = arr.length;
         int count = 0;
-        
-        for (int i=0; i<n; i++){
-            for (int j=i; j<n; j++){
+
+        for (int i=0; i<n; i++) {
+            for (int j=i; j<n; j++) {
                 int sum = 0;
-                for (int s=i; s<=j; s++){
-                    sum += nums[s];
+                for (int s=i; s<=j; s++) {
+                    sum += arr[s];
                 }
-                if (sum == k){
+                if (sum == k) {
                     count++;
                 }
             }
         }
+
         return count;
     }
 }
 
 
-
-
-
                                                              // BETTER APPROACH
                                                              
 class Solution {
-    public int subarraySum(int[] nums, int k) {
-        int n = nums.length;
+    public int subarraySum(int[] arr, int k) {
+        int n = arr.length;
         int count = 0;
-        
-        for (int i=0; i<n; i++){
+
+        for (int i=0; i<n; i++) {
             int sum = 0;
-            for (int j=i; j<n; j++){
-                sum += nums[j];
-                if (sum == k){
+            for (int j=i; j<n; j++) {
+                sum += arr[j];
+                if (sum == k) {
                     count++;
                 }
             }
         }
+
         return count;
     }
 }
