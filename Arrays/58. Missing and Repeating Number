@@ -1,0 +1,97 @@
+                                                      // BRUTE FORCE APPROACH
+
+import java.util.*;
+
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        Arrays.sort(arr);
+        int n = arr.length;
+        int miss = 0, repeat = 0;
+        int sum = 0;
+        
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] == arr[i + 1]) {
+                repeat = arr[i];
+            }
+            sum += arr[i];
+        }
+        sum += arr[n - 1]; 
+        
+        int expectedSum = n * (n + 1) / 2;
+        miss = expectedSum - (sum - repeat);
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(repeat);
+        ans.add(miss);
+        
+        return ans;
+    }
+}
+
+
+                                                      // BETTER APPROACH
+
+import java.util.*;
+
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        int n = arr.length;
+        boolean[] seen = new boolean[n + 1]; 
+        int repeat = 0, miss = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (seen[arr[i]]) {
+                repeat = arr[i];
+            } else {
+                seen[arr[i]] = true;
+            }
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (!seen[i]) {
+                miss = i;
+                break;
+            }
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add(repeat);
+        ans.add(miss);
+        return ans;
+    }
+}
+                                                      
+
+                                                      // OPTIMAL APPROACH
+
+import java.util.*;
+
+class Solution {
+    ArrayList<Integer> findTwoElement(int arr[]) {
+        int n = arr.length;
+        long sumArr = 0;
+        long sumSqArr = 0;
+
+        for (int num : arr) {
+            sumArr += num;
+            sumSqArr += (long) num * num;
+        }
+
+        long S = (long) n * (n + 1) / 2;
+        long S2 = (long) n * (n + 1) * (2 * n + 1) / 6;
+
+        long diff = sumArr - S;             // y - x
+        long sqDiff = sumSqArr - S2;        // y^2 - x^2
+
+        long sum = sqDiff / diff;           // y + x
+
+        long y = (diff + sum) / 2;
+        long x = y - diff;
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        ans.add((int) y); // repeating
+        ans.add((int) x); // missing
+        return ans;
+    }
+}
+                                                      
