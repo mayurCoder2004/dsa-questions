@@ -1,0 +1,70 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    static int inversionCount(int arr[]) {
+        // Code Here
+        int n = arr.length;
+        int count = 0;
+        
+        for (int i=0; i<n; i++) {
+            for (int j=i+1; j<n; j++) {
+                if (i < j && arr[i] > arr[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+                                                                    // OPTIMAL APPROACH
+
+class Solution {
+    int mergeSort(int[] arr, int[] temp, int left, int right) {
+        int mid, inv_count = 0;
+
+        if (right > left) {
+            mid = (right + left) / 2;
+
+            inv_count += mergeSort(arr, temp, left, mid);
+            inv_count += mergeSort(arr, temp, mid + 1, right);
+
+            inv_count += merge(arr, temp, left, mid + 1, right);
+        }
+
+        return inv_count;
+    }
+
+    int merge(int[] arr, int[] temp, int left, int mid, int right) {
+        int i = left, j = mid, k = left;
+        int inv_count = 0;
+
+        while (i <= mid - 1 && j <= right) {
+            if (arr[i] <= arr[j]) {
+                temp[k++] = arr[i++];
+            } else {
+                temp[k++] = arr[j++];
+                inv_count += (mid - i); // Count inversions
+            }
+        }
+
+        while (i <= mid - 1)
+            temp[k++] = arr[i++];
+
+        while (j <= right)
+            temp[k++] = arr[j++];
+
+        for (int idx = left; idx <= right; idx++)
+            arr[idx] = temp[idx];
+
+        return inv_count;
+    }
+
+    static int inversionCount(int arr[]) {
+        int[] temp = new int[arr.length];
+        Solution sol = new Solution();
+        return sol.mergeSort(arr, temp, 0, arr.length - 1);
+    }
+}
+                                                                    
