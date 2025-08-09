@@ -15,11 +15,7 @@ public class Solution {
 }
 
 
-
-
                // Transpose of a matrix without using extra space :- This method is applicable only for matrix with equal rows and columns
-
-
 
 public class Solution{
     public static void transposeInPlace(int [][] matrix){
