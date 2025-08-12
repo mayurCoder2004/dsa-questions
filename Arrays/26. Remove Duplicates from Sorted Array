@@ -26,9 +26,6 @@ public class Solution{
 }
 
 
-
-
-
 // METHOD 2
 import java.util.*;
 public class Solution {
@@ -45,5 +42,3 @@ public class Solution {
         return k;
     }
 }
-
-
