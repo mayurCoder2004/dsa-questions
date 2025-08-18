@@ -15,6 +15,5 @@ public class Solution{
         ans[0] = min;
         ans[1] = max;
         return ans;
-        
     }
 }
