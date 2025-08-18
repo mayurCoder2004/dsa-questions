@@ -1,21 +1,51 @@
+                                                              // BRUTE FORCE APPROACH
+
 class Solution {
-    public int findKRotation(List<Integer> arr) {
+    public int findKRotation(int arr[]) {
         // Code here
-        int n = arr.size();
-        int t = arr.get(0);
-        int st = 0, end = n-1;
-        int k = 0;
+        int n = arr.length;
+        int count = 0;
         
-        while (st <= end){
-            int mid = st + (end - st)/2;
-            if (arr.get(mid) < t){
-                k = mid;
-                end = mid - 1;
-            }
-            else {
-                st = mid + 1;
+        for (int i=1; i<n; i++) {
+            count++;
+            if (arr[i-1] > arr[i]) {
+                return count;
             }
         }
-        return k;
+        return 0;
     }
-}1.
+}
+
+
+                                                                // BINARY SEARCH APPROACH
+
+class Solution {
+    public int findKRotation(int arr[]) {
+        int n = arr.length;
+        int st = 0, end = n - 1;
+        int idx = 0; 
+        int pre = Integer.MAX_VALUE;
+
+        while (st <= end) {
+            int mid = st + (end - st) / 2;
+
+            if (arr[mid] < pre) {
+                pre = arr[mid];
+                idx = mid;
+            }
+
+            if (arr[st] <= arr[mid]) {
+                if (arr[st] < pre) {
+                    pre = arr[st];
+                    idx = st;
+                }
+                st = mid + 1;
+            } 
+            else {
+                end = mid - 1;
+            }
+        }
+
+        return idx;
+    }
+}
