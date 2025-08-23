@@ -11,3 +11,26 @@ class Solution {
         return sum-s;
     }
 }
+
+
+
+                                                                    // Using XOR approach
+
+class Solution {
+    int missingNum(int arr[]) {
+        // code here
+        int n = arr.length + 1;
+        int xorArr = 0;
+        int xorNum = 0;
+        
+        for (int i=0; i<n-1; i++) {
+            xorArr = xorArr ^ arr[i];
+        }
+        
+        for (int i=1; i<=n; i++) {
+            xorNum = xorNum ^ i;
+        }
+        
+        return xorArr ^ xorNum;
+    }
+}
