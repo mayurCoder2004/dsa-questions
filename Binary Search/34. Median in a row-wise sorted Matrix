@@ -1,3 +1,5 @@
+                                                                // BRUTE FORCE APPROACH
+
 class Solution {
     int median(int mat[][]) {
         int n = mat.length;
@@ -14,5 +16,64 @@ class Solution {
         
         Arrays.sort(arr);
         return arr[(n*m)/2];
+    }
+}
+
+
+
+                                                                // BINARY SEARCH APPROACH
+
+class Solution {
+    public int upperbound(int [] arr, int target) {
+        int n = arr.length;
+        int st = 0, end = n-1;
+        int ans = n; 
+        
+        while (st <= end) {
+            int mid = st + (end - st) / 2;
+            if (arr[mid] <= target) {
+                st = mid + 1;
+            }
+            else {
+                ans = mid;
+                end = mid - 1;
+            }
+        }
+        return ans;
+    }
+    
+    public int blackbox(int [][] mat, int target) {
+        int m = mat.length;
+        int count = 0;
+        for (int i=0; i<m; i++) {
+            count += upperbound(mat[i], target);
+        }
+        return count;
+    }
+    
+    public int median(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+        
+        int st = mat[0][0], end = mat[0][n-1];
+        for (int i=0; i<m; i++) {
+            st = Math.min(st, mat[i][0]);
+            end = Math.max(end, mat[i][n-1]);
+        }
+        
+        int req = (m*n) / 2;
+        
+        while (st <= end) {
+            int mid = st + (end - st) / 2;
+            int count = blackbox(mat, mid);
+            
+            if (count <= req) {
+                st = mid + 1;
+            }
+            else {
+                end = mid - 1;
+            }
+        }
+        return st;
     }
 }
