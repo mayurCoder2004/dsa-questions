@@ -1,3 +1,5 @@
+                                                        // BRUTE FORCE APPROACH (USING EXTRA SPACE)
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -32,5 +34,48 @@ class Solution {
         even = even.next;
         tempo.next = even;
         return odd;
+    }
+}
+
+
+                                                            // OPTIMAL APPROACH (WITHOUT USING APPROACH)
+
+// User function Template for Java
+
+/*
+class Node{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    Node divide(Node head) {
+        // code here
+        Node oddDummy = new Node(100);   
+        Node evenDummy = new Node(100);
+
+        Node odd = oddDummy;
+        Node even = evenDummy;
+        Node temp = head;
+        
+        while (temp != null) {
+            if (temp.data % 2 != 0) {
+                odd.next = temp;
+                odd = odd.next;
+            } else {
+                even.next = temp;
+                even = even.next;
+            }
+            temp = temp.next;
+        }
+        odd.next = null;   
+        even.next = oddDummy.next;
+        return evenDummy.next;
     }
 }
