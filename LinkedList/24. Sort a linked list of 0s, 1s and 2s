@@ -1,3 +1,5 @@
+                                                            // BRUTE FORCE APPROACH
+
 class Solution {
     static Node segregate(Node head) {
         // add your code here
@@ -29,5 +31,52 @@ class Solution {
             t = newNode;
         }
         return h.next;
+    }
+}
+
+
+                                                                    // OPTIMAL APPROACH
+
+class Solution {
+    public Node segregate(Node head) {
+        // code here
+        Node temp = head;
+        int zero = 0, one = 0, two = 0;
+        
+        while (temp != null) {
+            if (temp.data == 0) {
+                zero++;
+            }
+            else if (temp.data == 1) {
+                one++;
+            }
+            else {
+                two++;
+            }
+            temp = temp.next;
+        }
+        
+        int i = 0, j = 0, k = 0;
+        temp = head;
+        
+        while (i < zero) {
+            temp.data = 0;
+            temp = temp.next;
+            i++;
+        }
+        
+        while (j < one) {
+            temp.data = 1;
+            temp = temp.next;
+            j++;
+        }
+        
+        while (k < two) {
+            temp.data = 2;
+            temp = temp.next;
+            k++;
+        }
+        
+        return head;
     }
 }
