@@ -14,6 +14,7 @@ DSA-Questions/
 │── Binary Search/
 │── Strings/
 |── LinkedList/
+|── Bit Manipulation/
 │── README.md
 ```
 Each folder contains solutions to problems related to that specific topic.
