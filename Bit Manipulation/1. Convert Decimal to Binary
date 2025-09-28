@@ -1,0 +1,22 @@
+class Solution {
+    static String reverse(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        return sb.reverse().toString();
+    }
+    static String decToBinary(int n) {
+        String res = "";
+
+        if (n == 0) return "0";
+
+        while (n > 0) {
+            if (n % 2 == 1) {
+                res += "1";
+            } else {
+                res += "0";
+            }
+            n = n / 2;
+        }
+
+        return reverse(res);
+    }
+}
