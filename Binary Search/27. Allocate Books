@@ -44,9 +44,6 @@ public class Solution {
 }
 
 
-
-
-
                                                       // BINARY SEARCH APPROACH
 
 import java.util.ArrayList;
