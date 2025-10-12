@@ -1,0 +1,57 @@
+// Node class
+/* class Node {
+    int data;
+    Node next;
+
+    Node(int new_data) {
+        data = new_data;
+        next = null;
+    }
+} */
+
+// Stack class
+class myStack {
+    Node head = null;
+    int size = 0;
+    public myStack() {
+        // Initialize your data members
+    }
+
+    public boolean isEmpty() {
+        // check if the queue is empty
+        if (size == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void push(int x) {
+        // Adds an element x at the rear of the queue.
+        Node newNode = new Node(x);
+        newNode.next = head;
+        head = newNode;
+        size++;
+    }
+
+    public void pop() {
+        // Removes the front element of the queue
+        if (head != null) {
+            head = head.next;
+            size--;
+        }
+    }
+
+    public int peek() {
+        // Returns the front element of the queue.
+        // If queue is empty, return -1.
+        if (head == null) {
+            return -1;
+        }
+        return head.data;
+    }
+
+    public int size() {
+        // Returns the current size of the queue.
+        return size;
+    }
+}
