@@ -1,0 +1,34 @@
+class myStack {
+    private int idx = 0;
+    private int[] stack;
+
+    public myStack(int n) {
+        stack = new int[n];
+    }
+
+    public boolean isEmpty() {
+        return idx == 0;
+    }
+
+    public boolean isFull() {
+        return idx == stack.length;
+    }
+
+    public void push(int x) {
+        if (!isFull()) {
+            stack[idx++] = x;
+        }
+    }
+
+    public void pop() {
+        if (!isEmpty()) {
+            idx--;
+            stack[idx] = 0;
+        }
+    }
+
+    public int peek() {
+        if (isEmpty()) return -1;
+        return stack[idx - 1];
+    }
+}
