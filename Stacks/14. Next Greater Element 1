@@ -1,0 +1,46 @@
+                                                              // BRUTE FORCE APPROACH
+
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Stack<Integer> st = new Stack<>();
+        int n1 = nums1.length;
+        int n2 = nums2.length;
+        int [] nge = new int[n2];
+
+        st.push(n2-1);
+        nge[n2-1] = -1;
+
+        for (int i=n2-2; i>=0; i--) {
+            while (st.size() != 0 && nums2[i] >= nums2[st.peek()]) {
+                st.pop();
+            }
+            if (st.size() == 0) {
+                nge[i] = -1;
+            }
+            else {
+                nge[i] = st.peek();
+            }
+            st.push(i);
+        }
+
+        int [] ans = new int[n1];
+
+        for (int i=0; i<n1; i++) {
+            for (int j=0; j<n2; j++) {
+                if (nums1[i] == nums2[j]) {
+                    if (nge[j] == -1) {
+                        ans[i] = -1;
+                    }
+                    else {
+                        ans[i] = nums2[nge[j]];
+                    }
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+}
+
+
+                          
