@@ -26,4 +26,28 @@ class Solution {
 }
 
 
-                                                            
+                                                                    // BETTER APPROACH
+
+
+class Solution {
+    public static int[] count_NGE(int arr[], int indices[]) {
+        // code here
+        int n = arr.length;
+        int [] ge = new int[indices.length];
+        
+        for (int i=0; i<indices.length; i++) {
+            int idx = indices[i];
+            int count = 0;
+            
+            for (int j = idx + 1; j < n; j++) {
+                if (arr[j] > arr[idx]) {
+                    count++;
+                }
+            }
+            
+            ge[i] = count;
+        }
+        return ge;
+    }
+}
+
