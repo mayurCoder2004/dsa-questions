@@ -16,6 +16,7 @@ DSA-Questions/
 |── LinkedList/
 |── Bit Manipulation/
 |── Stacks/
+|── Greedy Algorithms/
 │── README.md
 ```
 Each folder contains solutions to problems related to that specific topic.
