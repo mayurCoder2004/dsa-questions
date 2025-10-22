@@ -28,6 +28,8 @@ Each folder contains solutions to problems related to that specific topic.
 - **Binary Search**
 - **Strings**
 - **LinkedList**
+- **Stacks**
+- **Greedy Algorithms**
 
 ## 🛠️ Languages Used
 - Java
