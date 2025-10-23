@@ -17,6 +17,7 @@ DSA-Questions/
 |── Bit Manipulation/
 |── Stacks/
 |── Greedy Algorithms/
+|── Queues/
 │── README.md
 ```
 Each folder contains solutions to problems related to that specific topic.
@@ -30,6 +31,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **LinkedList**
 - **Stacks**
 - **Greedy Algorithms**
+- **Queues**
 
 ## 🛠️ Languages Used
 - Java
