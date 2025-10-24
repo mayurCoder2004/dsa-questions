@@ -1,0 +1,32 @@
+class Solution {
+    public void rearrangeQueue(Queue<Integer> q) {
+        int n = q.size();
+        Stack<Integer> st = new Stack<>();
+
+        // Step 1: push first half elements into stack
+        for (int i = 0; i < n / 2; i++) {
+            st.push(q.remove());
+        }
+
+        // Step 2: enqueue stack elements at the back (reversed first half)
+        while (!st.isEmpty()) {
+            q.add(st.pop());
+        }
+
+        // Step 3: move first half (which was reversed) to back
+        for (int i = 0; i < n / 2; i++) {
+            q.add(q.remove());
+        }
+
+        // Step 4: again push first half into stack
+        for (int i = 0; i < n / 2; i++) {
+            st.push(q.remove());
+        }
+
+        // Step 5: interleave the elements from stack and queue
+        while (!st.isEmpty()) {
+            q.add(st.pop());
+            q.add(q.remove());
+        }
+    }
+}
