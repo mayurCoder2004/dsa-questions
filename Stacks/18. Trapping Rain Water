@@ -1,0 +1,42 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int [] prefMax(int [] arr) {
+        int n = arr.length;
+        int [] ans = new int[n];
+
+        ans[0] = arr[0];
+        for (int i=1; i<n; i++) {
+            ans[i] = Math.max(ans[i-1], arr[i]);
+        }
+        return ans;
+    }
+
+    public int [] suffMax(int [] arr) {
+        int n = arr.length;
+        int [] ans = new int[n];
+
+        ans[n-1] = arr[n-1];
+        for (int i=n-2; i>=0; i--) {
+            ans[i] = Math.max(ans[i+1], arr[i]);
+        }
+        return ans;
+    }
+    public int trap(int[] height) {
+        int n = height.length;
+
+        int [] pref = prefMax(height);
+        int [] suff = suffMax(height);
+        int total = 0;
+
+        for (int i=0; i<n; i++) {
+            int leftMax = pref[i];
+            int rightMax = suff[i];
+
+            if (height[i] < leftMax && height[i] < rightMax) {
+                total += (Math.min(leftMax, rightMax) - height[i]);
+            }
+        }
+        return total;
+    }
+}
