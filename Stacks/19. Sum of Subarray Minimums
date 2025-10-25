@@ -36,3 +36,72 @@ class Solution {
         return sum;
     }
 }
+
+
+                                                                // OPTIMAL APPROACH
+
+import java.util.*;
+
+class Solution {
+    public int[] nse(int[] arr) {
+        int n = arr.length;
+        int[] nse = new int[n];
+        Stack<Integer> st = new Stack<>();
+
+        st.push(n - 1);
+        nse[n - 1] = n;
+
+        for (int i = n - 2; i >= 0; i--) {
+            while (!st.isEmpty() && arr[st.peek()] >= arr[i]) {
+                st.pop();
+            }
+            if (st.isEmpty()) {
+                nse[i] = n;
+            } else {
+                nse[i] = st.peek();
+            }
+            st.push(i);
+        }
+        return nse;
+    }
+
+    public int[] pse(int[] arr) {
+        int n = arr.length;
+        int[] pse = new int[n];
+        Stack<Integer> st = new Stack<>();
+
+        st.push(0);
+        pse[0] = -1;
+
+        for (int i = 1; i < n; i++) {
+            while (!st.isEmpty() && arr[st.peek()] > arr[i]) {
+                st.pop();
+            }
+            if (st.isEmpty()) {
+                pse[i] = -1;
+            } else {
+                pse[i] = st.peek();
+            }
+            st.push(i);
+        }
+        return pse;
+    }
+
+    public int sumSubarrayMins(int[] arr) {
+        int n = arr.length;
+        long sum = 0;
+        int mod = 1_000_000_007;
+
+        int[] pse = pse(arr);
+        int[] nse = nse(arr);
+
+        for (int i = 0; i < n; i++) {
+            long left = i - pse[i];
+            long right = nse[i] - i;
+            long contribution = (left * right % mod) * arr[i] % mod;
+            sum = (sum + contribution) % mod;
+        }
+
+        return (int) sum;
+    }
+}
