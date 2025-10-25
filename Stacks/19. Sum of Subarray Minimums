@@ -1,0 +1,19 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int sumSubarrayMins(int[] arr) {
+        int n = arr.length;
+        int sum = 0;
+
+        for (int i=0; i<n; i++) {
+            for (int j=i; j<n; j++) {
+                int min = arr[i];
+                for (int k=i; k<=j; k++) {
+                    min = Math.min(min, arr[k]);
+                }
+                sum += min;
+            }
+        }
+        return sum;
+    }
+}
