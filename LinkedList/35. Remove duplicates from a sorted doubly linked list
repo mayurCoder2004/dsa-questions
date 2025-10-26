@@ -1,0 +1,25 @@
+// User function Template for Java
+
+class Solution {
+    Node removeDuplicates(Node head) {
+        // Code Here.
+        if (head == null) return null;
+        
+        Node temp = head;
+        
+        while (temp != null) {
+            while (temp.next != null && temp.data == temp.next.data) {
+                Node duplicate = temp.next;
+                temp.next = duplicate.next;
+                if (duplicate.next != null) {
+                    duplicate.next.prev = temp;
+                }
+                duplicate.next = null;
+                duplicate.prev = null;
+            }
+            temp = temp.next;
+        }
+        
+        return head;
+    }
+}
