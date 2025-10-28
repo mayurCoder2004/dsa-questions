@@ -1,0 +1,37 @@
+                                                          // BRUTE FORCE APPROACH
+
+class Solution {
+    public String removeOuterParentheses(String s) {
+        Stack<Character> st = new Stack<>();
+        Stack<Character> ans = new Stack<>();
+
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+
+            if (ch == '(') {
+                // only push to ans if this '(' is not the outermost one
+                if (!st.isEmpty()) {
+                    ans.push(ch);
+                }
+                st.push(ch);
+            } else { // ch == ')'
+                st.pop();
+                // only push to ans if this ')' is not the last one closing the primitive
+                if (!st.isEmpty()) {
+                    ans.push(ch);
+                }
+            }
+        }
+
+        // copy elements from ans stack into StringBuilder in order
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < ans.size(); i++) {
+            sb.append(ans.get(i));
+        }
+
+        return sb.toString();
+    }
+}
+                                                          
