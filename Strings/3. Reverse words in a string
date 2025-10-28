@@ -1,0 +1,33 @@
+                                                        // BRUTE FORCE APPROACH
+
+class Solution {
+    public String reverseWords(String s) {
+        int n = s.length();
+        ArrayList<String> arr = new ArrayList<>();
+        String str = "";
+
+        for (int i=0; i<n; i++) {
+            char ch = s.charAt(i);
+
+            if (ch != ' ') {
+                str += ch;
+            }
+            else {
+                if (!str.isEmpty()) {  // skip multiple spaces
+                    arr.add(str);
+                    str = "";
+                }
+            }
+        }
+
+        if (!str.isEmpty()) {
+            arr.add(str);
+        }
+
+        Collections.reverse(arr);
+
+        String ans = String.join(" ", arr);
+
+        return ans;
+    }
+}                                                        
