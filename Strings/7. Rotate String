@@ -1,3 +1,5 @@
+                                                                // BRUTE FORCE APPROACH
+
 class Solution {
     public String rotate(String s, int k) {
         int n = s.length();
@@ -14,5 +16,16 @@ class Solution {
             }
         }
         return false;
+    }
+}
+
+
+                                                                // OPTIMAL APPROACH
+
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        if (s.length() != goal.length()) return false;
+        String doubled = s + s;
+        return doubled.contains(goal);
     }
 }
