@@ -1,0 +1,33 @@
+                                                            // BRUTE FORCE APPROACH
+
+class Solution {
+    public int beautySum(String s) {
+        int n = s.length();
+        int count = 0;
+
+        for (int i=0; i<n; i++) {
+            for (int j=i; j<n; j++) {
+                String str = s.substring(i, j+1);
+                HashMap<Character, Integer> map = new HashMap<>();
+                for (int k=0; k<str.length(); k++) {
+                    char ch = str.charAt(k);
+                    map.put(ch, map.getOrDefault(ch, 0) + 1);
+                }
+
+                int maxFreq = Integer.MIN_VALUE;
+                int minFreq = Integer.MAX_VALUE;
+
+                // Iterate through the values
+                for (int freq : map.values()) {
+                    if (freq > maxFreq) maxFreq = freq;
+                    if (freq < minFreq) minFreq = freq;
+                }
+
+                int diff = maxFreq - minFreq;
+
+                count += diff;
+            }
+        }
+        return count;
+    }
+}                                                            
