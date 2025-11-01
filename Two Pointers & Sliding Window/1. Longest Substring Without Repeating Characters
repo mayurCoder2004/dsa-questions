@@ -1,4 +1,4 @@
-                                                                                      // BRUTE FORCE APPROACH
+                                                                      // BRUTE FORCE APPROACH
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -22,3 +22,30 @@ class Solution {
         return max;
     }
 }                                                                                      
+
+
+                                                                        // OPTIMAL APPROACH
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLen = 0;
+        int left = 0;
+
+        HashSet<Character> set = new HashSet<>();
+        
+        for (int right=0; right<n; right++) {
+            // Check if element is present or not
+            while (set.contains(s.charAt(right))) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+
+            // Add the element and update the len and maxLen
+            set.add(s.charAt(right));
+            int len = right - left + 1;
+            maxLen = Math.max(len, maxLen);
+        }
+        return maxLen;
+    }
+}
