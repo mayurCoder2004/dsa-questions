@@ -40,3 +40,35 @@ class Solution {
         return count;
     }
 }
+
+
+                                                                    // OPTIMAL APPROACH
+
+class Solution {
+    public int countSumGoal(int [] nums, int goal) {
+        if (goal < 0) return 0;
+        int n = nums.length;
+        int count = 0, left = 0, right = 0, sum = 0;
+
+        while (right < n) {
+            sum += nums[right];
+            while (sum > goal) {
+                sum = sum - nums[left];
+                left++;
+            }
+            count = count + (right - left + 1);
+            right++;
+        }
+        return count;
+    }
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        int n = nums.length;
+        // Find the number of subarrays less than or equal to goal
+        int ngoal = countSumGoal(nums, goal);
+
+        // Find the number of subarrays less than or equal to goal - 1
+        int nthgoal = countSumGoal(nums, goal-1);
+        
+        return ngoal - nthgoal;
+    }
+}
