@@ -18,6 +18,7 @@ DSA-Questions/
 |── Stacks/
 |── Greedy Algorithms/
 |── Queues/
+|── Two Pointers & Sliding Window/
 │── README.md
 ```
 Each folder contains solutions to problems related to that specific topic.
@@ -32,6 +33,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Stacks**
 - **Greedy Algorithms**
 - **Queues**
+- **Two Pointers & Sliding Window**
 
 ## 🛠️ Languages Used
 - Java
