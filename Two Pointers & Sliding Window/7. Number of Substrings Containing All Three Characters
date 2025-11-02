@@ -1,0 +1,19 @@
+                                                              // BRUTE FORCE APPROACH
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            int[] hash = new int[3];
+            for (int j = i; j < n; j++) {
+                hash[s.charAt(j) - 'a']++;
+                if (hash[0] > 0 && hash[1] > 0 && hash[2] > 0) {
+                    count += (n - j);
+                    break;
+                }
+            }
+        }
+        return count;
+    }
+}
