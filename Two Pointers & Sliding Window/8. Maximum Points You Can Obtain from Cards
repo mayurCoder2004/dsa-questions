@@ -1,0 +1,23 @@
+                                                              // BRUTE FORCE APPROACH
+
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        int rem = n - k;
+        int min = Integer.MAX_VALUE;
+        int totalSum = 0;
+
+        for (int i=0; i<n; i++) {
+            totalSum += cardPoints[i];
+        }
+
+        for (int i=0; i<=n-rem; i++) {
+            int sum = 0;
+            for (int j=i; j<i+rem; j++) {
+                sum += cardPoints[j];
+            }
+            min = Math.min(sum, min);
+        }
+        return totalSum - min;
+    }
+}
