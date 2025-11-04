@@ -1,0 +1,30 @@
+                                                          // BRUTE FORCE APPROACH
+
+import java.util.HashMap;
+public class Solution {
+
+	public static int kDistinctChars(int k, String str) {
+		// Write your code here
+		int n = str.length();
+
+		HashMap<Character, Integer> map = new HashMap<>();
+		int maxLen = 1;
+
+		for (int i=0; i<n; i++) {
+			map.clear();
+			for (int j=i; j<n; j++) {
+				char ch = str.charAt(j);
+				map.put(ch, map.getOrDefault(ch, 0) + 1);
+				if (map.size() <= k) {
+					maxLen = Math.max(maxLen, j-i+1);
+				}
+				else {
+					break;
+				}
+			}
+		}
+		return maxLen;
+	}
+
+}
+                                                          
