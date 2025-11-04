@@ -25,6 +25,41 @@ public class Solution {
 		}
 		return maxLen;
 	}
+}
+
+
+																	// OPTIMAL APPROACH
+
+import java.util.HashMap;
+public class Solution {
+
+	public static int kDistinctChars(int k, String str) {
+		// Write your code here
+		int n = str.length();
+
+		HashMap<Character, Integer> map = new HashMap<>();
+		int maxLen = 1;
+		int left = 0;
+
+		for (int right=0; right<n; right++) {
+			char ch = str.charAt(right);
+			map.put(ch, map.getOrDefault(ch, 0) + 1);
+			while (map.size() > k) {
+				char leftChar = str.charAt(left);
+                map.put(leftChar, map.get(leftChar) - 1);
+                if (map.get(leftChar) == 0) {
+                    map.remove(leftChar); 
+                }
+                left++;
+			}
+			int sum = 0;
+			for (int value: map.values()) {
+				sum += value;
+			}
+			maxLen = Math.max(maxLen, sum);
+		}
+		return maxLen;
+	}
 
 }
-                                                          
+
