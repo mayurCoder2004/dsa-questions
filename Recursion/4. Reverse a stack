@@ -1,0 +1,25 @@
+                                                            // BRUTE FORCE APPROACH
+
+import java.util.Stack;
+
+public class Solution {
+    
+	public static void reverseStack(Stack<Integer> st) {
+		// write your code here
+		Stack<Integer> rt = new Stack<>();
+
+		while (st.size() > 0) {
+			rt.push(st.pop());
+		}
+
+		Stack<Integer> ans = new Stack<>();
+		while (rt.size() > 0) {
+			ans.push(rt.pop());
+		}
+
+		while (ans.size() > 0) {
+			st.push(ans.pop());
+		}
+	}
+}
+                                                            
