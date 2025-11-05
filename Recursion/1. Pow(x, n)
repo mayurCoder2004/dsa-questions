@@ -1,0 +1,23 @@
+                                                                        // BRUTE FORCE APPROACH
+
+class Solution {
+    public double myPow(double x, int n) {
+        double res = 1.0;
+        boolean isNeg = false;
+
+        if (n < 0) {
+            isNeg = true;
+            n = -1 * n;
+        }
+
+        for (int i=1; i<=n; i++) {
+            if (isNeg) {
+                res = res * (1 / x);
+            }
+            else {
+                res = res * x;
+            }
+        }
+        return res;
+    }
+}                                                                        
