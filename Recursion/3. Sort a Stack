@@ -1,0 +1,38 @@
+                                                                  // BRUTE FORCE APPROACH
+
+import java.util.*; 
+import java.io.*; 
+
+public class Solution {
+
+	public static void sortStack(Stack<Integer> st) {
+		// Write your code here.
+		int[] arr = new int[st.size()];
+		int k = 0;
+
+		// Pop all elements into an array
+		while (!st.isEmpty()) {
+			arr[k++] = st.pop();
+		}
+
+		// Sort array in ascending order
+		Arrays.sort(arr);
+
+		// Push elements in ascending order to stack (so smallest is at bottom)
+		for (int i = 0; i < arr.length; i++) {
+			st.push(arr[i]);
+		}
+
+		// Reverse stack to make it descending (largest on top)
+		Stack<Integer> temp = new Stack<>();
+		while (!st.isEmpty()) {
+			temp.push(st.pop());
+		}
+
+		// Now temp contains descending order elements
+		while (!temp.isEmpty()) {
+			st.push(temp.pop());
+		}
+	}
+}
+                                                                  
