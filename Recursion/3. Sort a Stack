@@ -36,3 +36,42 @@ public class Solution {
 	}
 }
                                                                   
+
+																		// OPTIMAL APPROACH
+
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+	public static void sortedInsert(Stack<Integer> st, int num) {
+		// Base case
+		if (st.isEmpty() || st.peek() < num) {
+			st.push(num);
+			return;
+		}
+
+		// Self work
+		int top = st.pop();
+
+		// Recursive work
+		sortedInsert(st, num);
+
+		st.push(top);
+	}
+
+	public static void sortStack(Stack<Integer> st) {
+		// Write your code here.
+		// Base case
+		if (st.isEmpty()) {
+			return;
+		}
+
+		// Self work
+		int num = st.pop();
+
+		// Recursive work
+		sortStack(st);
+
+		sortedInsert(st, num);
+	}
+
+}
