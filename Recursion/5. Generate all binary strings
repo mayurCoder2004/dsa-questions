@@ -1,0 +1,22 @@
+class Solution {
+    public ArrayList<String> binstr(int n) {
+        // code here
+        ArrayList<String> ans = new ArrayList<>();
+        
+        helper(ans, "", n);
+        return ans;
+    }
+    
+    public void helper(ArrayList<String> ans, String str, int n) {
+        // Base case
+        if (str.length() == n) {
+            ans.add(str);
+            return;
+        }
+        
+        // Recursive work
+        helper(ans, str+'0', n);
+        
+        helper(ans, str+'1', n);
+    }
+}
