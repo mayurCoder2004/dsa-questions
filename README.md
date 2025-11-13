@@ -31,6 +31,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Binary Search**
 - **Strings**
 - **LinkedList**
+- **Bit Manipulation**
 - **Stacks**
 - **Greedy Algorithms**
 - **Queues**
