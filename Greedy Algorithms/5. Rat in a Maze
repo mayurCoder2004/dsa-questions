@@ -41,3 +41,47 @@ class Solution {
         return ans;
     }
 }                                                                  
+
+
+                                                                    // APPROACH WITHOUT USING EXTRA MATRIX
+
+class Solution {
+    void getAns(int [][] maze, int r, int c, ArrayList<String> ans, String path) {
+        int n = maze.length;
+        if (r < 0 || c < 0 || r >= n || c >= n || maze[r][c] == 0 || maze[r][c] == -1) {
+            return;
+        }
+        
+        if (r == n-1 && c == n-1) {
+            ans.add(path);
+            return;
+        }
+        
+        maze[r][c] = -1;
+        
+        // Down 
+        getAns(maze, r+1, c, ans, path + "D");
+        
+        // Up
+        getAns(maze, r-1, c, ans, path + "U");
+        
+        // Left
+        getAns(maze, r, c-1, ans, path + "L");
+        
+        // Right
+        getAns(maze, r, c+1, ans, path + "R");
+        
+        maze[r][c] = 1;
+    }
+    public ArrayList<String> ratInMaze(int[][] maze) {
+        // code here
+        int r = maze.length;
+        int c = maze[0].length;
+        ArrayList<String> ans = new ArrayList<>();
+        
+        getAns(maze, 0, 0, ans, "");
+        
+        Collections.sort(ans);
+        return ans;
+    }
+}
