@@ -1,0 +1,33 @@
+class Solution {
+    ArrayList<Integer> twoOddNum(int[] arr) {
+        // code here
+        ArrayList<Integer> ans = new ArrayList<>();
+        int xor = 0;
+
+        // Step 1: XOR all numbers
+        for (int num : arr) xor ^= num;
+
+        // Step 2: Find rightmost set bit
+        int setBit = xor & -xor;
+
+        int x = 0, y = 0;
+
+        // Step 3: Divide numbers into two groups
+        for (int num : arr) {
+            if ((num & setBit) != 0)
+                x ^= num;
+            else
+                y ^= num;
+        }
+
+        // Usually return bigger first (common for coding sites)
+        if (x > y) {
+            ans.add(x);
+            ans.add(y);
+            return ans;
+        }
+        ans.add(y);
+        ans.add(x);
+        return ans;
+    }
+}
