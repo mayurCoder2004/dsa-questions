@@ -1,0 +1,58 @@
+                                                                    // BRUTE FORCE APPROACH
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int count = 0;
+
+        for (int i=0; i<n; i++) {
+            for (int j=i; j<n; j++) {
+                int [] ans = new int[2];
+                for (int k=i; k<=j; k++) {
+                    char ch = s.charAt(k);
+                    if (ch == '0') {
+                        ans[0]++;
+                    }
+                    else {
+                        ans[1]++;
+                    }
+                }
+                if (ans[1] >= ans[0] * ans[0]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+                                                                    // BETTER APPROACH
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int count = 0;
+
+        for (int i=0; i<n; i++) {
+            int zeroes = 0, ones = 0;
+            for (int j=i; j<n; j++) {
+                if (s.charAt(j) == '0') {
+                    zeroes++;
+                }
+                else {
+                    ones++;
+                }
+
+                if (zeroes > 200) {
+                    break;
+                }
+
+                if (ones >= zeroes * zeroes) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
