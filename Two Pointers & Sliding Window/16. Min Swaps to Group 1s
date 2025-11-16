@@ -1,0 +1,32 @@
+// User function Template for Java
+
+class Solution {
+    public int minSwaps(int[] arr) {
+        // Complete the function
+        int n = arr.length;
+        int k = 0;
+        
+        for (int i=0; i<n; i++) {
+            k += arr[i];
+        }
+        
+        if (k == 0) return -1;
+        
+        int left = 0, right = 0, sum = 0, maxCount = 0;
+        
+        while (right < n) {
+            if (right - left + 1 < k) {
+                sum += arr[right];
+                right++;
+            }
+            else {
+                sum += arr[right];
+                maxCount = Math.max(maxCount, sum);
+                sum -= arr[left];
+                left++;
+                right++;
+            }
+        }
+        return k - maxCount;
+    }
+}
