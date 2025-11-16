@@ -1,0 +1,23 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int numSub(String s) {
+        int ans = 0;
+        int n = s.length();
+
+        for (int i=0; i<n; i++) {
+            int count = 0;
+            for (int j=i; j<n; j++) {
+                char ch = s.charAt(j);
+                if (ch == '1') {
+                    count++;
+                }
+                else {
+                    break;
+                }
+            }
+            ans += count;
+        }
+        return ans;
+    }
+}                                                                
