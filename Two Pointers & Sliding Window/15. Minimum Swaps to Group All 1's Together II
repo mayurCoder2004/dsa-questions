@@ -1,0 +1,39 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int minSwaps(int[] nums) {
+        int n = nums.length;
+
+        int ones = 0;
+
+        // Count total 1s
+        for (int num : nums) {
+            if (num == 1) ones++;
+        }
+
+        // If there are 0 or 1 ones, they are already grouped
+        if (ones <= 1) return 0;
+
+        int ans = Integer.MAX_VALUE;
+
+        // Try every possible starting index (circular)
+        for (int start = 0; start < n; start++) {
+
+            int countOnes = 0;
+
+            // Window size = ones, circular indexing
+            for (int k = 0; k < ones; k++) {
+                int idx = (start + k) % n; // wrap-around
+                if (nums[idx] == 1) {
+                    countOnes++;
+                }
+            }
+
+            int zeroes = ones - countOnes; // swaps needed
+            ans = Math.min(ans, zeroes);
+        }
+
+        return ans;
+    }
+}
+                                                                
