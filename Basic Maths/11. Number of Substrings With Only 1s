@@ -1,0 +1,54 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int numSub(String s) {
+        int ans = 0;
+        int n = s.length();
+
+        for (int i=0; i<n; i++) {
+            int count = 0;
+            for (int j=i; j<n; j++) {
+                char ch = s.charAt(j);
+                if (ch == '1') {
+                    count++;
+                }
+                else {
+                    break;
+                }
+            }
+            ans += count;
+        }
+        return ans;
+    }
+}                                                                
+
+
+                                                                // OPTIMAL APPROACH
+
+class Solution {
+    public int numSub(String s) {
+        long ans = 0;
+        int n = s.length();
+        int i = 0;
+        long MOD = 1_000_000_007L;
+
+        while (i < n) {
+            if (s.charAt(i) == '1') {
+                int j = i;
+                while (j < n && s.charAt(j) != '0') {
+                    j++;
+                }
+                long len = j - i;
+                long sub = len * (len + 1) / 2;
+                ans += sub;
+                ans = ans % MOD;
+
+                i = j;
+            }
+            else {
+                i++;
+            }
+        }
+        return (int) ans;
+    }
+}
