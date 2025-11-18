@@ -27,3 +27,33 @@ class Solution {
     }
 }
                                                                   
+
+                                                                      // OPTIMAL APPROACH
+
+class Solution {
+    public int maximumUniqueSubarray(int[] nums) {
+        int n = nums.length;
+        int ans = 0;
+        int left = 0;
+        int right = 0;
+        int sum = 0;
+        HashSet<Integer> set = new HashSet<>();
+
+        while(right < n) {
+            // Remove if element is already present
+            while (set.contains(nums[right])) {
+                set.remove(nums[left]);
+                sum -= nums[left];
+                left++;
+            }
+
+            set.add(nums[right]);
+            sum += nums[right];
+
+            ans = Math.max(sum, ans);
+            right++;
+        }
+
+        return ans;
+    }
+}
