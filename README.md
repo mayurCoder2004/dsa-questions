@@ -12,6 +12,7 @@ DSA-Questions/
 │── Sorting Algorithms/
 │── Patterns/
 │── Binary Search/
+│── Binary Trees/
 │── Strings/
 |── LinkedList/
 |── Bit Manipulation/
@@ -29,6 +30,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Sorting Algorithms**
 - **Patterns**
 - **Binary Search**
+- **Binary Trees**
 - **Strings**
 - **LinkedList**
 - **Bit Manipulation**
