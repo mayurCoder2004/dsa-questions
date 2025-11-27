@@ -1,0 +1,63 @@
+                                                                    // BRUTE FORCE APPROACH
+
+class Solution {
+    public long maxSubarraySum(int[] nums, int k) {
+        int n = nums.length;
+        int maxSum = Integer.MIN_VALUE;
+
+        for (int i=0; i<n; i++) {
+            int sum = 0;
+            for (int j=i; j<n; j++) {
+                sum += nums[j];
+                if (sum >= maxSum) {
+                    if ((j - i + 1) % k == 0) {
+                        maxSum = sum;
+                    }
+                }
+            }
+        }
+        return maxSum;
+    }
+}
+
+
+                                                                      // OPTIMAL APPROACH
+
+import java.util.HashMap;
+
+class Solution {
+    public long maxSubarraySum(int[] nums, int k) {
+        int n = nums.length;
+        long[] prefix = new long[n + 1];
+
+        for (int i = 0; i < n; i++) {
+            prefix[i + 1] = prefix[i] + nums[i];
+        }
+
+        long maxSum = Long.MIN_VALUE;
+        // For each mod, store the MIN prefix sum seen so far
+        HashMap<Integer, Long> minPrefix = new HashMap<>();
+
+        for (int i = 0; i <= n; i++) {
+            int mod = i % k;
+            long curPrefix = prefix[i];
+
+            if (minPrefix.containsKey(mod)) {
+                long candidate = curPrefix - minPrefix.get(mod); // valid subarray with length % k == 0
+                if (candidate > maxSum) {
+                    maxSum = candidate;
+                }
+                // update min prefix for this mod
+                if (curPrefix < minPrefix.get(mod)) {
+                    minPrefix.put(mod, curPrefix);
+                }
+            } else {
+                // first time seeing this mod
+                minPrefix.put(mod, curPrefix);
+            }
+        }
+
+        return maxSum;
+    }
+}
+                                                                      
