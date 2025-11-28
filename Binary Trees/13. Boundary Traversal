@@ -1,0 +1,50 @@
+class Solution {
+    public void LeftBoundary(Node root, ArrayList<Integer> arr) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return;
+        }
+        arr.add(root.data);
+        if (root.left != null) {
+            LeftBoundary(root.left, arr);
+        } else {
+            LeftBoundary(root.right, arr);
+        }
+    }
+
+    public void RightBoundary(Node root, ArrayList<Integer> arr) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return;
+        }
+        if (root.right != null) {
+            RightBoundary(root.right, arr);
+        } else {
+            RightBoundary(root.left, arr);
+        }
+        arr.add(root.data);
+    }
+
+    public void BottomBoundary(Node root, ArrayList<Integer> arr) {
+        if (root == null) {
+            return;
+        }
+        if (root.left == null && root.right == null) {
+            arr.add(root.data);
+            return;  
+        }
+        BottomBoundary(root.left, arr);
+        BottomBoundary(root.right, arr);
+    }
+
+    ArrayList<Integer> boundaryTraversal(Node root) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        if (root == null) return arr;
+
+        arr.add(root.data);              
+        LeftBoundary(root.left, arr);     
+        BottomBoundary(root.left, arr);   
+        BottomBoundary(root.right, arr);  
+        RightBoundary(root.right, arr);   
+
+        return arr;
+    }
+}
