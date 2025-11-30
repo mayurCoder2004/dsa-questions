@@ -1,0 +1,77 @@
+                                                                // BRUTE FORCE APPROACH
+
+class Solution {
+    public int minSubarray(int[] nums, int p) {
+        int n = nums.length;
+        long sum = 0;
+        
+        for (int i=0; i<n; i++) {
+            sum += nums[i];
+        }
+
+        if (sum % p == 0) {
+            return 0;
+        }
+
+        int minLen = n;
+
+        for (int i=0; i<n; i++) {
+            long s = 0;
+            for (int j=i; j<n; j++) {
+                s += nums[j];
+                if ((sum - s) % p == 0) {
+                    minLen = Math.min(minLen, j - i + 1);
+                }
+            }
+        }
+        if (minLen == n) {
+            return -1;
+        }
+        return minLen;
+    }
+}
+
+
+                                                                  // OPTIMAL APPROACH
+
+import java.util.HashMap;
+
+class Solution {
+    public int minSubarray(int[] nums, int p) {
+        int n = nums.length;
+        long sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+
+        int reqRem = (int)(sum % p);
+        if (reqRem == 0) {
+            return 0;
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1);
+
+        int rem = 0;
+        int minLen = n;
+
+        for (int i = 0; i < n; i++) {
+            // ✅ Avoid overflow by casting to long before mod
+            rem = (int)((rem + (long)nums[i]) % p);
+
+            int need = (rem - reqRem + p) % p;
+
+            if (map.containsKey(need)) {
+                int len = i - map.get(need);
+                if (len < n) {  // ✅ Don't remove full array
+                    minLen = Math.min(minLen, len);
+                }
+            }
+
+            map.put(rem, i);
+        }
+
+        return minLen == n ? -1 : minLen;
+    }
+}
+                                                                  
