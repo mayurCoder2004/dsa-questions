@@ -16,6 +16,7 @@ DSA-Questions/
 │── Strings/
 |── LinkedList/
 |── Bit Manipulation/
+|── Dynamic Programming/
 |── Stacks/
 |── Greedy Algorithms/
 |── Queues/
@@ -34,6 +35,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Strings**
 - **LinkedList**
 - **Bit Manipulation**
+- **Dynamic Programming**
 - **Stacks**
 - **Greedy Algorithms**
 - **Queues**
