@@ -11,6 +11,8 @@ DSA-Questions/
 │── Arrays/
 │── Sorting Algorithms/
 │── Patterns/
+│── Basic Maths/
+│── Binary Search Tree/
 │── Binary Search/
 │── Binary Trees/
 │── Strings/
@@ -30,6 +32,8 @@ Each folder contains solutions to problems related to that specific topic.
 - **Arrays**
 - **Sorting Algorithms**
 - **Patterns**
+- **Basic Maths**
+- **Binary Search Trees**
 - **Binary Search**
 - **Binary Trees**
 - **Strings**
