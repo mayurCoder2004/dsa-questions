@@ -1,0 +1,22 @@
+class Solution {
+    public int[] diStringMatch(String s) {
+        int n = s.length();
+        int [] arr = new int[n+1];
+        int low = 0, high = n;
+        int k = 0;
+
+        for (int i=0; i<n; i++) {
+            char ch = s.charAt(i);
+            if (ch == 'I') {
+                arr[k++] = low;
+                low++; 
+            }
+            else {
+                arr[k++] = high;
+                high--;
+            }
+        }
+        arr[n] = low;
+        return arr;
+    }
+}
