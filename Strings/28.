@@ -1,0 +1,36 @@
+class Solution {
+    public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+        int [] freq = new int[26];
+
+        String s1 = "";
+        for (int i=0; i<firstWord.length(); i++) {
+            char ch = firstWord.charAt(i);
+            int pos = ch - 'a';
+            char result = (char) (pos + '0');
+            s1 += result;
+        }
+        int n1 = Integer.parseInt(s1);
+
+        String s2 = "";
+        for (int i=0; i<secondWord.length(); i++) {
+            char ch = secondWord.charAt(i);
+            int pos = ch - 'a';
+            char result = (char) (pos + '0');
+            s2 += result;
+        }
+        int n2 = Integer.parseInt(s2);
+
+        String s3 = "";
+        for (int i=0; i<targetWord.length(); i++) {
+            char ch = targetWord.charAt(i);
+            int pos = ch - 'a';
+            char result = (char) (pos + '0');
+            s3 += result;
+        }
+        int n3 = Integer.parseInt(s3);
+
+        int sum = n1 + n2;
+
+        return (sum == n3);
+    }
+}
