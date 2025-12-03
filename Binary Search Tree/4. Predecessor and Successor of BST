@@ -1,0 +1,43 @@
+class Solution {
+    public ArrayList<Node> findPreSuc(Node root, int key) {
+        ArrayList<Node> result = new ArrayList<>();
+        Node pre = null, suc = null;
+        Node curr = root;
+        
+        // Step 1: Search for the key, updating possible predecessor and successor
+        while (curr != null) {
+            if (key < curr.data) {
+                // current node can be successor
+                suc = curr;
+                curr = curr.left;
+            } 
+            else if (key > curr.data) {
+                // current node can be predecessor
+                pre = curr;
+                curr = curr.right;
+            } 
+            else {
+                // key found → go inside subtrees to finalize pre/suc
+                break;
+            }
+        }
+        
+        // Step 2: If key is found, check left subtree for predecessor
+        if (curr != null && curr.left != null) {
+            Node temp = curr.left;
+            while (temp.right != null) temp = temp.right;
+            pre = temp;
+        }
+        
+        // Step 3: Check right subtree for successor
+        if (curr != null && curr.right != null) {
+            Node temp = curr.right;
+            while (temp.left != null) temp = temp.left;
+            suc = temp;
+        }
+        
+        result.add(pre);
+        result.add(suc);
+        return result;
+    }
+}
