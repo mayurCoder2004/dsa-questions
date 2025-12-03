@@ -1,0 +1,30 @@
+class Solution {
+    public int sum(int [] arr) {
+        int n = arr.length;
+        int sum = 0;
+        for (int i=0; i<n; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+    public int digSum(int n) {
+        int sum = 0;
+        while (n != 0) {
+            int digit = n % 10;
+            sum += digit;
+            n = n / 10;
+        }
+        return sum;
+    }
+    public int differenceOfSum(int[] nums) {
+        int elSum = sum(nums);
+        int dSum = 0;
+        int n = nums.length;
+
+        for (int i=0; i<n; i++) {
+            dSum += digSum(nums[i]);
+        }
+
+        return Math.abs(dSum - elSum);
+    }
+}
