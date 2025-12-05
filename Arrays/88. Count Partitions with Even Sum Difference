@@ -1,0 +1,35 @@
+class Solution {
+    public int [] prefSum(int [] nums) {
+        int n = nums.length;
+        int [] pref = new int[n];
+        pref[0] = nums[0];
+        for (int i=1; i<n; i++) {
+            pref[i] = pref[i-1] + nums[i];
+        }
+        return pref;
+    }
+    public int sum(int [] nums) {
+        int n = nums.length;
+        int sum = 0;
+        for (int i=0; i<n; i++) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+    public int countPartitions(int[] nums) {
+        int n = nums.length;
+        int [] pref = prefSum(nums);
+        int sum = sum(nums);
+        int count = 0;
+
+        for (int i=0; i<n-1; i++) {
+            int leftSum = pref[i];
+            int rightSum = sum - pref[i];
+            int diff = Math.abs(leftSum - rightSum);
+            if (diff % 2 == 0) {
+                count++;
+            }
+        } 
+        return count;
+    }
+}
