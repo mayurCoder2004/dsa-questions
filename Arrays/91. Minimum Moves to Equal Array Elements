@@ -1,0 +1,26 @@
+class Solution {
+    public int sum(int [] nums) {
+        int n = nums.length;
+        int sum = 0;
+
+        for (int i=0; i<n; i++) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+
+    public int min(int [] nums) {
+        int n = nums.length;
+        int min = Integer.MAX_VALUE;
+
+        for (int i=0; i<n; i++) {
+            min = Math.min(nums[i], min);
+        }
+
+        return min;
+    }
+    public int minMoves(int[] nums) {
+        int n = nums.length;
+        return sum(nums) - (min(nums) * n);
+    }
+}
