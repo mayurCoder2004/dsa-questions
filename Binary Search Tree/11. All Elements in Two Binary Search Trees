@@ -1,0 +1,44 @@
+class Solution {
+    public void inorder(TreeNode root, List<Integer> arr) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left, arr);
+        arr.add(root.val);
+        inorder(root.right, arr);
+    }
+    public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
+        List<Integer> a1 = new ArrayList<>();
+        List<Integer> a2 = new ArrayList<>();
+
+        inorder(root1, a1);
+        inorder(root2, a2);
+
+        int i = 0, j = 0;
+        int n1 = a1.size(), n2 = a2.size();
+        List<Integer> ans = new ArrayList<>();
+
+        while (i < n1 && j < n2) {
+            if (a1.get(i) > a2.get(j)) {
+                ans.add(a2.get(j));
+                j++;
+            }
+            else {
+                ans.add(a1.get(i));
+                i++;
+            }
+        }
+
+        while (i < n1) {
+            ans.add(a1.get(i));
+            i++;
+        }
+
+        while (j < n2) {
+            ans.add(a2.get(j));
+            j++;
+        }
+
+        return ans;
+    }
+}
