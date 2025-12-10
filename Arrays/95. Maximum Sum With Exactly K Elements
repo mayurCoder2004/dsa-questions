@@ -1,0 +1,21 @@
+class Solution {
+    public int max(int [] nums) {
+        int n = nums.length;
+        int max = nums[0];
+
+        for (int i=0; i<n; i++) {
+            max = Math.max(max, nums[i]);
+        }
+        return max;
+    }
+    public int maximizeSum(int[] nums, int k) {
+        int n = nums.length;
+        int max = max(nums);
+        int sum = 0;
+
+        for (int i=0; i<k; i++) {
+            sum += (max + i);
+        }
+        return sum;
+    }
+}
