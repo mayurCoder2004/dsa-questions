@@ -1,0 +1,22 @@
+class Solution {
+    public boolean checkDistances(String s, int[] distance) {
+        int n = s.length();
+        int [] arr = new int[26];
+
+        Arrays.fill(arr, -1);
+
+        for (int i=0; i<n; i++) {
+            char letter = s.charAt(i);
+            if (arr[letter - 'a'] == -1) {
+                arr[letter - 'a'] = i;
+            }
+            else {
+                int dist = i - arr[letter - 'a'] - 1;
+                if (dist != distance[letter - 'a']) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
