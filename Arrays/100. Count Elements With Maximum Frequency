@@ -1,0 +1,25 @@
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        int n = nums.length;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int maxFreq = 1;
+
+        for (int i=0; i<n; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> entry: map.entrySet()) {
+            int freq = entry.getValue();
+            maxFreq = Math.max(freq, maxFreq);
+        }
+
+        int count = 0;
+        for (int i=0; i<n; i++) {
+            int freq = map.get(nums[i]);
+            if (freq == maxFreq) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
