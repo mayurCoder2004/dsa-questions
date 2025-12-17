@@ -1,0 +1,21 @@
+class Solution {
+    public int totalMoney(int n) {
+        int sum = 0;         
+        int prevWeekStart = 1;
+        int i = 1;
+
+        while (i <= n) {
+            int dayOfWeek = (i - 1) % 7;
+
+            if (dayOfWeek == 0 && i != 1) {
+                prevWeekStart++;
+            }
+
+            int money = prevWeekStart + dayOfWeek;
+            sum += money;
+
+            i++;   
+        }
+        return sum;
+    }
+}
