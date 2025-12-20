@@ -1,0 +1,48 @@
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+        int n = nums.length;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // Step 1: Frequency map
+        for (int i = 0; i < n; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+
+        // Step 2: Find degree (max frequency)
+        int maxFreq = 0;
+        for (int freq : map.values()) {
+            maxFreq = Math.max(maxFreq, freq);
+        }
+
+        // Step 3: Check all elements with max frequency
+        int ans = n;
+
+        for (int el : map.keySet()) {
+            if (map.get(el) == maxFreq) {
+
+                int st = 0, end = n - 1;
+
+                // first occurrence
+                for (int i = 0; i < n; i++) {
+                    if (nums[i] == el) {
+                        st = i;
+                        break;
+                    }
+                }
+
+                // last occurrence
+                for (int i = n - 1; i >= 0; i--) {
+                    if (nums[i] == el) {
+                        end = i;
+                        break;
+                    }
+                }
+
+                ans = Math.min(ans, end - st + 1);
+            }
+        }
+
+        return ans;
+    }
+}
