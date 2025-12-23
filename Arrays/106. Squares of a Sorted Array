@@ -1,3 +1,5 @@
+                                                                    // BRUTE FORCE APPROACH
+
 class Solution {
     public int[] sortedSquares(int[] nums) {
         int n = nums.length;
@@ -7,5 +9,33 @@ class Solution {
         }
         Arrays.sort(nums);
         return nums;
+    }
+}
+
+
+                                                                    // OPTIMAL APPROACH
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;
+        int [] ans = new int[n];
+
+        int k = n-1;
+        int st = 0, end = n-1;
+
+        while (st <= end) {
+            int leftSq = nums[st] * nums[st];
+            int rightSq = nums[end] * nums[end];
+
+            if (leftSq > rightSq) {
+                ans[k--] = leftSq;
+                st++;
+            }
+            else {
+                ans[k--] = rightSq;
+                end--;
+            }
+        }
+        return ans;
     }
 }
