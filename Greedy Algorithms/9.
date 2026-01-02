@@ -1,0 +1,28 @@
+                                                  // BRUTE FORCE APPROACH
+
+class Solution {
+    public boolean helper(String s, int idx, int count) {
+        if (count < 0) {
+            return false;
+        }
+        if (idx == s.length()) {
+            return (count == 0);
+        }
+
+        if (s.charAt(idx) == '(') {
+            return helper(s, idx+1, count+1);
+        }
+        if (s.charAt(idx) == ')') {
+            return helper(s, idx+1, count-1);
+        }
+        return helper(s, idx+1, count+1) || helper(s, idx+1, count-1) || helper(s, idx+1, count);
+    }
+    public boolean checkValidString(String s) {
+        return helper(s, 0, 0);
+    }
+}
+
+
+                                                    // OPTIMAL APPROACH
+
+                                                    
