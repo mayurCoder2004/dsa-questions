@@ -22,6 +22,7 @@ DSA-Questions/
 |── Stacks/
 |── Greedy Algorithms/
 |── Queues/
+|── Prefix Sum/
 |── Recursion/
 |── Two Pointers & Sliding Window/
 │── README.md
@@ -43,6 +44,7 @@ Each folder contains solutions to problems related to that specific topic.
 - **Stacks**
 - **Greedy Algorithms**
 - **Queues**
+- **Prefix Sum**
 - **Recursion**
 - **Two Pointers & Sliding Window**
 
