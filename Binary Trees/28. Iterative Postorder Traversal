@@ -1,5 +1,3 @@
-                                                          // Method 1 (Using 2 Stack)
-
 class Tree {
     ArrayList<Integer> postOrder(Node root) {
         // code here
