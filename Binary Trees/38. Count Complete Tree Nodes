@@ -1,0 +1,46 @@
+                                                                  // BRUTE FORCE APPROACH
+
+class Solution {
+    public int helper(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + helper(root.left) + helper(root.right);
+    }
+    public int countNodes(TreeNode root) {
+        return helper(root);
+    }
+}
+
+
+                                                                // OPTIMAL APPROACH
+
+class Solution {
+    public int leftHeight(TreeNode root) {
+        int count = 0;
+        while (root.left != null) {
+            count++;
+            root = root.left;
+        }
+        return count;
+    }
+    public int rightHeight(TreeNode root) {
+        int count = 0;
+        while (root.right != null) {
+            count++;
+            root = root.right;
+        }
+        return count;
+    }
+    public int countNodes(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        int lh = leftHeight(root);
+        int rh = rightHeight(root);
+
+        if (lh == rh) return ((2<<lh) - 1);
+        else return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+}                                                                
