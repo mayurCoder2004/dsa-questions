@@ -1,0 +1,42 @@
+class Solution {
+    public boolean isNonDecreasing(List<Integer> arr) {
+        int n = arr.size();
+
+        for (int i=0; i<n-1; i++) {
+            if (arr.get(i) > arr.get(i+1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public int minimumPairRemoval(int[] nums) {
+        int n = nums.length;
+        List<Integer> arr = new ArrayList<>();
+
+        for (int i=0; i<n; i++) {
+            arr.add(nums[i]);
+        }
+
+        int operations = 0;
+
+        while (!isNonDecreasing(arr)) {
+            int minSum = Integer.MAX_VALUE;
+            int idx = 0;
+
+            for (int i=0; i<arr.size()-1; i++) {
+                int sum = arr.get(i) + arr.get(i+1);
+                if (sum < minSum) {
+                    minSum = sum;
+                    idx = i;
+                }
+            }
+
+            int mergedSum = arr.get(idx) + arr.get(idx+1);
+            arr.remove(idx+1);
+            arr.set(idx, mergedSum);
+
+            operations++;
+        }
+        return operations;
+    }
+}
