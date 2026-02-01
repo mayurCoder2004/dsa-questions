@@ -1,0 +1,31 @@
+                                                                  // APPROACH 1
+
+class Solution {
+    public void inorder(TreeNode root, List<Integer> ans) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left, ans);
+        ans.add(root.val);
+        inorder(root.right, ans);
+    }
+    public boolean findTarget(TreeNode root, int k) {
+        List<Integer> inorder = new ArrayList<>();
+        inorder(root, inorder);
+
+        int i = 0, j = inorder.size() - 1;
+        while (i < j) {
+            int sum = inorder.get(i) + inorder.get(j);
+            if (sum > k) {
+                j--;
+            }
+            else if (sum < k) {
+                i++;
+            }
+            else {
+                return true;
+            }
+        }
+        return false;
+    }
+}
