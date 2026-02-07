@@ -1,0 +1,20 @@
+class Solution {
+    public static void dfs(int node, boolean [] visited, ArrayList<ArrayList<Integer>> adj, ArrayList<Integer> ls) {
+        visited[node] = true;
+        ls.add(node);
+        
+        for (int it: adj.get(node)) {
+            if (visited[it] == false) {
+                dfs(it, visited, adj, ls);
+            }
+        }
+    }
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        boolean [] visited = new boolean[adj.size() + 1];
+        visited[0] = true;
+        ArrayList<Integer> ls = new ArrayList<>();
+        dfs(0, visited, adj, ls);
+        return ls;
+    }
+}
