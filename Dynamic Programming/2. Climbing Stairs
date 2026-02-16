@@ -1,0 +1,35 @@
+                                                                      // RECURSION APPROACH
+
+class Solution {
+    public int climbStairs(int n) {
+        if (n < 0) {
+            return 0;
+        }
+        if (n == 0) {
+            return 1;
+        }
+
+        int left = climbStairs(n-1);
+        int right = climbStairs(n-2);
+        return left + right;
+    }
+}
+
+
+                                                                        // DP APPROACH
+
+class Solution {
+    public int climbStairs(int n) {
+        if (n <= 2) {
+            return n;
+        }
+        int prev = 2, prev2 = 1;
+
+        for (int i=3; i<=n; i++) {
+            int curr = prev + prev2;
+            prev2 = prev;
+            prev = curr;
+        }
+        return prev;
+    }
+}                                                                        
