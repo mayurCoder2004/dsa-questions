@@ -1,0 +1,15 @@
+class Solution {
+    public List<String> readBinaryWatch(int turnedOn) {
+        List<String> ans = new ArrayList<>();
+        
+        for (int hours=0; hours<12; hours++) {
+            for (int minutes=0; minutes<60; minutes++) {
+                int totalBits = Integer.bitCount(hours) + Integer.bitCount(minutes);
+                if (totalBits == turnedOn) {
+                    ans.add(hours + ":" + String.format("%02d", minutes));
+                }
+            }
+        }
+        return ans;
+    }
+}
