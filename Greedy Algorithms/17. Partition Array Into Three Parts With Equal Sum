@@ -1,0 +1,33 @@
+class Solution {
+    public int sum(int [] arr) {
+        int n = arr.length;
+        int sum = 0;
+
+        for (int i=0; i<n; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+    public boolean canThreePartsEqualSum(int[] arr) {
+        int n = arr.length;
+        int totalSum = sum(arr);
+
+        if (totalSum % 3 != 0) {
+            return false;
+        }
+
+        int targetSum = totalSum / 3;
+
+        int sum = 0;
+        int count = 0;
+        for (int i=0; i<n; i++) {
+            sum += arr[i];
+            if (sum == targetSum) {
+                count++;
+                sum = 0;
+            }
+        }
+
+        return count >= 3;
+    }
+}
