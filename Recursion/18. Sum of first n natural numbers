@@ -1,0 +1,28 @@
+                                                            // PARAMETERIZED METHOD
+
+class Solution {
+    public static int sum(int i, int sum) {
+        if (i < 1) {
+            return sum;
+        }
+        return sum(i-1, sum+i);
+    }
+    public static int findSum(int n) {
+        // code here
+        return sum(n, 0);
+    }
+}
+
+
+                                                            // FUNCTIONAL WAY
+
+class Solution {
+    public static int findSum(int n) {
+        // code here
+        if (n < 1) {
+            return n;
+        }
+        return n + findSum(n-1);
+    }
+}
+                                                            
