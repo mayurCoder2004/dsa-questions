@@ -1,0 +1,24 @@
+class Solution {
+    public void print(int [] nums, int i, ArrayList<Integer> arr, int s, int sum, int n, ArrayList<ArrayList<Integer>> ans) {
+        if (i == n) {
+            if (s == sum) {
+                ans.add(new ArrayList<>(arr)); 
+            }
+            return;
+        }
+        arr.add(nums[i]);
+        s += nums[i];
+        print(nums, i+1, arr, s, sum, n, ans);
+        arr.remove(arr.size() - 1);
+        s -= nums[i];
+        print(nums, i+1, arr, s, sum, n, ans);
+    }
+    public int countSubsequenceWithTargetSum(int[] nums, int k) {
+        //your code goes here
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        int n = nums.length;
+        print(nums, 0, arr, 0, k, n, ans);
+        return ans.size();
+    }
+}
