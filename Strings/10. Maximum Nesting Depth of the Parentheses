@@ -1,3 +1,5 @@
+                                                                // BRUTE FORCE APPROACH
+
 class Solution {
     public int maxDepth(String s) {
         int n = s.length();
@@ -20,5 +22,28 @@ class Solution {
             maxDepth = Math.max(maxDepth, depth);
         }
         return maxDepth;
+    }
+}
+
+
+                                                                // OPTIMAL APPROACH
+
+class Solution {
+    public int maxDepth(String s) {
+        int n = s.length();
+        int maxCount = 0;
+        int count = 0;
+
+        for (int i=0; i<n; i++) {
+            char ch = s.charAt(i);
+            if (ch == '(') {
+                count++;
+            }
+            else if (ch == ')') {
+                count--;
+            }
+            maxCount = Math.max(maxCount, count);
+        }
+        return maxCount;
     }
 }
