@@ -1,0 +1,42 @@
+class Solution {
+    public boolean isCol(int [][] mat, int row, int col) {
+        int n = mat[0].length;
+        for (int j=0; j<n; j++) {
+            if (j == col) {
+                continue;
+            }
+            if (mat[row][j] == 1) {
+                return false;
+            } 
+        }
+        return true;
+    }
+    public boolean isRow(int [][] mat, int row, int col) {
+        int m = mat.length;
+        for (int i=0; i<m; i++) {
+            if (i == row) {
+                continue;
+            }
+            if (mat[i][col] == 1) {
+                return false;
+            } 
+        }
+        return true;
+    }
+    public int numSpecial(int[][] mat) {
+        int m = mat.length;
+        int n = mat[0].length;
+        int count = 0;
+
+        for (int i=0; i<m; i++) {
+            for (int j=0; j<n; j++) {
+                if (mat[i][j] == 1) {
+                    if (isRow(mat, i, j) && isCol(mat, i, j)) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+    }
+}
