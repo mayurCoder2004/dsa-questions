@@ -1,0 +1,27 @@
+class Solution {
+    public boolean judgeCircle(String moves) {
+        int n = moves.length();
+        int v = 0, h = 0;
+
+        for (int i=0; i<n; i++) {
+            char ch = moves.charAt(i);
+            if (ch == 'L' || ch == 'R') {
+                if (ch == 'L') {
+                    h--;
+                }
+                else {
+                    h++;
+                }
+            }
+            else {
+                if (ch == 'U') {
+                    v++;
+                }
+                else {
+                    v--;
+                }
+            }
+        }
+        return v == 0 && h == 0;
+    }
+}
