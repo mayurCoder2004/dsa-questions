@@ -39,3 +39,78 @@ class Solution {
         return ans;
     }
 }
+
+
+class Solution {
+    public void reverse(int [] arr, int i, int j) {
+        while (i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+    }
+
+    public void square(int [] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            arr[i] = arr[i] * arr[i];
+        }
+    }
+
+    public int[] sortedSquares(int[] nums) {
+        int n = nums.length;  
+        int idx = -1; 
+
+        // find last negative index
+        for (int i = 0; i < n; i++) {
+            if (nums[i] >= 0) {
+                idx = i - 1;
+                break;
+            }
+        }
+
+        // ✅ ALL NEGATIVE
+        if (idx == -1 && nums[0] < 0) {
+            reverse(nums, 0, n - 1);
+            square(nums);
+            return nums;
+        }
+
+        // ✅ ALL NON-NEGATIVE
+        if (idx == -1 && nums[0] >= 0) {
+            square(nums);
+            return nums;
+        }
+
+        // reverse negative part
+        reverse(nums, 0, idx);
+
+        // square all elements BEFORE merging
+        square(nums);
+
+        int [] ans = new int[n];
+        
+        int l = 0, r = idx + 1, i = 0;
+
+        // merge two sorted halves
+        while (l <= idx && r < n) {
+            if (nums[l] <= nums[r]) {
+                ans[i++] = nums[l++];
+            } else {
+                ans[i++] = nums[r++];
+            }
+        }
+
+        while (l <= idx) {
+            ans[i++] = nums[l++];
+        }
+
+        while (r < n) {
+            ans[i++] = nums[r++];
+        }
+
+        return ans;
+    }
+}
