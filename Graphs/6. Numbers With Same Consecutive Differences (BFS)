@@ -1,0 +1,33 @@
+class Solution {
+    public int[] numsSameConsecDiff(int n, int k) {
+        List<Integer> res = new ArrayList<>();
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int num=1; num<=9; num++) {
+            q.add(num);
+        }
+
+        int len = 1;
+        while (!q.isEmpty() && len < n) {
+            len++;
+            int s = q.size();
+            for (int i=0; i<s; i++) {
+                int curr = q.remove();
+                int lastdigit = curr % 10;
+                if (lastdigit + k <= 9) q.add(curr*10 + lastdigit + k);
+                if (k != 0 && lastdigit - k >= 0) q.add(curr*10 + lastdigit - k);
+            }
+        }
+
+        while (!q.isEmpty()) {
+            res.add(q.remove());
+        }
+
+        int [] retres = new int[res.size()];
+
+        for (int i=0; i<res.size(); i++) {
+            retres[i] = res.get(i);
+        }
+        return retres;
+    }
+}
