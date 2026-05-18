@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isSafe(int r, int c, int n, int m) {
+        return (r >= 0 && r < n && c >= 0 && c < m);
+    } 
+    public void dfs(int r, int c, int [][] image, int orig_color, int color, int n, int m) {
+        image[r][c] = color;
+
+        int [][] dir = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+        for (int k=0; k<4; k++) {
+            int newr = r + dir[k][0];
+            int newc = c + dir[k][1];
+            if (isSafe(newr, newc, n, m) && image[newr][newc] == orig_color) {
+                dfs(newr, newc, image, orig_color, color, n, m);
+            }
+        }
+    }
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        int n = image.length;
+        int m = image[0].length;
+
+        int orig_color = image[sr][sc];
+        if (orig_color == color) {
+            return image;
+        }
+
+        dfs(sr, sc, image, orig_color, color, n, m);
+        return image;
+    }
+}
