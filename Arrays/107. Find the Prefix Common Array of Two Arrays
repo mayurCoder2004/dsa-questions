@@ -1,0 +1,49 @@
+                                                                  // BRUTE FORCE APPROACH
+
+class Solution {
+    public int[] findThePrefixCommonArray(int[] a1, int[] a2) {
+        int n = a1.length;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int [] ans = new int[n];
+        for (int i=0; i<n; i++) {
+            map.put(a1[i], map.getOrDefault(a1[i], 0) + 1);
+            map.put(a2[i], map.getOrDefault(a2[i], 0) + 1);
+            int count = 0;
+            for (int freq: map.values()) {
+                if (freq == 2) {
+                    count++;
+                }
+            }
+            ans[i] = count;
+        }
+        return ans;
+    }
+}
+
+
+                                                                  // OPTIMAL APPROACH
+
+class Solution {
+    public int[] findThePrefixCommonArray(int[] a1, int[] a2) {
+        int n = a1.length;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int [] ans = new int[n];
+        int count = 0;
+        for (int i=0; i<n; i++) {
+            map.put(a1[i], map.getOrDefault(a1[i], 0) + 1);
+            if (map.get(a1[i]) == 2) {
+                count++;
+            }
+
+            map.put(a2[i], map.getOrDefault(a2[i], 0) + 1);
+            if (map.get(a2[i]) == 2) {
+                count++;
+            }
+            
+            ans[i] = count;
+        }
+        return ans;
+    }
+}                                                                  
