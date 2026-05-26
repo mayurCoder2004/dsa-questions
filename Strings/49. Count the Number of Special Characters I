@@ -1,0 +1,16 @@
+class Solution {
+    public int numberOfSpecialChars(String word) {
+        int count = 0;
+        int n = word.length();
+
+        for (int i=0; i<26; i++) {
+            char u = (char) (i + 65);
+            char l = (char) (i + 97);
+
+            if (word.contains(String.valueOf(l)) && word.contains(String.valueOf(u))) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
