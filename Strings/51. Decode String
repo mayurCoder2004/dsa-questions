@@ -1,0 +1,64 @@
+class Solution {
+    public String decodeString(String s) {
+
+        int n = s.length();
+
+        Stack<String> stringStack = new Stack<>();
+        Stack<Integer> numStack = new Stack<>();
+
+        int num = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            char ch = s.charAt(i);
+
+            // Build complete number
+            if (Character.isDigit(ch)) {
+                num = num * 10 + (ch - '0');
+            }
+
+            else if (ch == '[') {
+
+                numStack.push(num);
+                stringStack.push("[");
+
+                num = 0;
+            }
+
+            else if (ch == ']') {
+
+                StringBuilder sb = new StringBuilder();
+
+                while (!stringStack.isEmpty() &&
+                       !stringStack.peek().equals("[")) {
+
+                    sb.append(stringStack.pop());
+                }
+
+                // remove '['
+                stringStack.pop();
+
+                String str = sb.toString();
+
+                int repeat = numStack.pop();
+
+                String ans = str.repeat(repeat);
+
+                stringStack.push(ans);
+            }
+
+            else {
+
+                stringStack.push(ch + "");
+            }
+        }
+
+        StringBuilder res = new StringBuilder();
+
+        while (!stringStack.isEmpty()) {
+            res.append(stringStack.pop());
+        }
+
+        return res.reverse().toString();
+    }
+}
